@@ -1,0 +1,9 @@
+.parallax--footer {
+  @include paralax-footer;
+}
+
+.content__list--footer {
+  &--title {
+    @include flex-all-center;
+  }
+}

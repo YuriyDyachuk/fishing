@@ -1,0 +1,23 @@
+.flex {
+  .body-text-sm {
+    font-family: Inter,Tahoma,sans-serif;
+    font-size: .8125rem;
+    line-height: 1.45;
+  }
+  .mb-xs {
+    margin-bottom: var(--space-xs-breakpoint-xs);
+  }
+  .text-center {
+    text-align: center;
+  }
+  p {
+    margin: 0 0 1em;
+  }
+
+  .remember {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+  }
+}

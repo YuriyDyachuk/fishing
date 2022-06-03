@@ -1,0 +1,57 @@
+@media (max-width: 992px) {
+  #content-main {
+    .main-img {
+      margin-bottom: 11rem!important
+    }
+
+    .info-author-comment {
+      display: block;
+
+      .col-6 {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 792px) {
+  #content-main {
+    display: block!important;
+    text-align: center!important;
+    max-width: 95%!important;
+
+    .main-img {
+      margin-bottom: 2rem!important
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  #content-main {
+    max-width: 95%!important;
+
+    .main-img {
+      margin-bottom: 2rem!important
+    }
+
+    .card-comment-main {
+      padding-top: 15px;
+      flex-direction: column!important;
+      align-items: center!important;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  #content-main {
+    max-width: 95%!important;
+
+    .card-comment-main > .col > span {
+      display: block;
+    }
+
+    .card-comment-main > .col:last-child > i, .bg-danger {
+      display: none!important;
+    }
+  }
+}

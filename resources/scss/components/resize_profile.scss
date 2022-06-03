@@ -1,0 +1,23 @@
+@media (max-width: 445px) {
+
+  #item-nav {
+    flex-direction: column!important;
+  }
+
+  #settings {
+
+    form {
+      display: flex!important;
+      flex-direction: column;
+
+      .row > .col-6 {
+        width: 100%;
+      }
+
+    }
+
+    #ava {
+      margin-top: 15px;
+    }
+  }
+}

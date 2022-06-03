@@ -1,0 +1,101 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.8"
+services:
+
+  db:
+    image: mysql/mysql-server:8.0
+    container_name: ${CONTAINER_MYSQL_NAME}
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: root
+    ports:
+      - ${MYSQL_PORT_IN}:${MYSQL_PORT_OUT}
+    networks:
+      - sail
+
+  nginx:
+    build: docker/nginx
+    container_name: ${CONTAINER_NGINX_NAME}
+    working_dir: /var/www/html
+    restart: always
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - ${NGINX_PORT_IN_80}:${NGINX_PORT_OUT_80}
+      - ${NGINX_PORT_IN_443}:${NGINX_PORT_OUT_443}
+    networks:
+      - sail
+
+  app:
+    build: docker/php-fpm
+    container_name: ${CONTAINER_PHP_FPM_NAME}
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - ./docker/php-fpm/php.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+    extra_hosts:
+      - "internal.host:host-gateway"
+    networks:
+      - sail
+
+  redis:
+    container_name: ${CONTAINER_REDIS_NAME}
+    image: 'redis:6.0.10-alpine'
+    domainname: "redis.${APP_NAME}.${APP_ENV}"
+    hostname: "redis"
+    restart: always
+    environment:
+      - REDIS_MAX_MEMORY=128mb
+      - ALLOW_EMPTY_PASSWORD=yes
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "256m"
+        max-file: "10"
+    networks:
+      - sail
+
+  supervisor:
+    image: 'okteto/supervisord-nginx'
+    networks:
+      - sail
+    depends_on:
+      - app
+      - nginx
+    command: supervisord
+
+#  telegram-bot-api:
+#    image: aiogram/telegram-bot-api:latest
+#    environment:
+#      TELEGRAM_API_ID: "<api-id>"
+#      TELEGRAM_API_HASH: "<api-hash>"
+#    volumes:
+#      - telegram-bot-api-data:/var/lib/telegram-bot-api
+#    ports:
+#      - 8081:8081
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - ${PHPMYADMIN_PORT_IN}:${PHPMYADMIN_PORT_OUT}
+    environment:
+      MYSQL_USERNAME: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      PMA_HOST: db
+    networks:
+      - sail
+
+networks:
+  sail:
+    driver: bridge

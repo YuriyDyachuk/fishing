@@ -1,0 +1,38 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// AdminLTE
+@import '~admin-lte/dist/css/adminlte.css';
+
+// базовые подключения
+@import 'variables';
+//@import 'fonts';
+@import 'mixins';
+@import 'settings';
+
+// подключения компонентов страницы (большие компоненты)
+@import "./components/header";
+@import "components/content";
+@import "components/profile";
+
+// подключения компонентов страницы (маленькие компоненты)
+@import "./components/nav";
+@import "./components/header-contact";
+@import "components/preview";
+@import "components/register";
+@import "components/reports";
+@import "components/popap";
+@import "components/input_file";
+@import "components/resize_profile";
+@import "components/report_resize";
+@import "components/main_resize";
+@import "components/footer";

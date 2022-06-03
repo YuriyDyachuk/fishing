@@ -1,0 +1,65 @@
+.header-contacts, .header-auth {
+  @include flex-v-center;
+
+  .dropdown-menu {
+    min-width: 7rem;
+  }
+
+  &__dropdown {
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none !important;
+  }
+
+  &__link {
+    @include flex-column-contact;
+    text-decoration: none!important;
+
+    &--drop {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none !important;
+      &:first-child {
+        padding-bottom: 5px;
+      }
+    }
+
+    &--drop:hover {
+      color: #1a202c;
+    }
+  }
+
+  &__link:hover, &__dropdown:hover {
+    color: #1a202c;
+  }
+}
+
+.contacts-link {
+  padding-left: 30px;
+  background-position: left center;
+  background-repeat: no-repeat;
+
+  &--viber {
+    //background-image: url("../images/viber.svg");
+    //@include size-contact
+  }
+
+  &--telegram {
+    //background-image: url("../images/telegram.svg");
+    //@include size-contact
+  }
+}
+
+.auth-link {
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  &--login {
+    @include style-auth-component
+  }
+
+  &--register {
+    @include style-auth-component
+  }
+}

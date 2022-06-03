@@ -1,0 +1,109 @@
+@mixin bg-cover {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin flex-v-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-h-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-all-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-all-sa {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flex-column-start {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+@mixin flex-profile-fa{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30px 30px 30px;
+}
+
+@mixin flex-top-start {
+display: flex;
+flex-direction: row;
+align-self: flex-start;
+align-items: end;
+}
+
+@mixin flex-column-center {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+@mixin flex-column-contact {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+@mixin size-contact {
+width: 24px;
+height: 24px;
+}
+
+@mixin style-auth-component {
+color: var(--color-auth-component);
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+}
+
+@mixin flex-item-cart {
+width: calc(100% - 120px);
+height: 350px;
+background: var(--color-light);
+box-shadow: 0 2px 20px var(--color-shadow-content);
+border-radius: 6px;
+margin-bottom: 20px;
+}
+
+@mixin paralax {
+//background-image: url("../images/content-main.jpeg");
+/* Set a specific height */
+  min-height: 700px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin paralax-footer {
+  /* Set a specific height */
+  min-height: 700px;
+  /* Create the parallax scrolling effect */
+  background-size: cover;
+}

@@ -1,0 +1,18 @@
+#popap {
+  position: fixed;
+  top: 200px;
+  left: -500px;
+  width: 370px;
+  height: 85px;
+  background-color: #ffe5e5;
+  border-radius: 8px;
+  z-index: 9999;
+  align-items: center;
+  transition: .5s all;
+}
+
+@media (max-width: 792px) {
+  #popap {
+    display: none;
+  }
+}

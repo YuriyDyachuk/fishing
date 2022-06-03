@@ -1,0 +1,23 @@
+.nav {
+  &__list {
+    @include flex-v-center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+
+  &__link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    color: var(--color-auth-component);
+    text-decoration: none!important;
+  }
+
+  &__link:hover {
+    color: #1a202c;
+  }
+}

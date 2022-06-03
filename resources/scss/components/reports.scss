@@ -1,0 +1,16 @@
+.reports__cart {
+  margin-top: 110px;
+
+  &--info {
+    margin-bottom: 20px;
+  }
+
+  &--info:last-child {
+    margin-bottom: -20px;
+  }
+
+  .loader__btn {
+    position: relative;
+    top: 58px
+  }
+}

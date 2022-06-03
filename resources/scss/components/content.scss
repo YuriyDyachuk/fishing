@@ -1,0 +1,95 @@
+.parallax {
+  @include paralax;
+
+  .map-wrapper {
+    .locations-map {
+      height: 610px;
+      margin-left: 340px;
+    }
+  }
+
+  /*Google Map Init*/
+  #map {
+    height: 600px;
+    width: 1200px;
+    margin: auto;
+
+    .map-box-content{
+      width: 230px;
+    }
+
+    .gm-style .gm-style-iw-c {
+      top: -5px;
+    }
+    .gm-style .gm-style-iw-t::after {
+      top: -5px;
+    }
+
+  }
+}
+
+.ava_author {
+  width: 30%;
+}
+
+.content__list {
+  z-index: 1;
+  width: 100%;
+  min-height: 3500px;
+  background: var(--color-light);
+
+  .content {
+    position: relative;
+    top: 60px;
+    display: flex;
+    align-items: center;
+    margin: auto 50px;
+    min-height: 300px;
+    flex-direction: column;
+
+    &__item {
+      @include flex-item-cart;
+    }
+  }
+
+  .blocks {
+    @include flex-all-sb;
+    min-height: 100%;
+    padding: 20px;
+
+    &__panel {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    &__photo {
+      width: 90%;
+    }
+
+    &__count {
+      @include flex-top-start;
+
+      &:nth-child(n + 1) {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #3F8CFF;
+      }
+    }
+
+    &__count--comment {
+      //background: url("./public/images/comm.svg") no-repeat left center;
+      margin-left: 5px;
+      @include size-contact;
+    }
+
+    &__author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+  }
+}

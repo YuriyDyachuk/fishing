@@ -1,0 +1,143 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.site-container {
+  overflow: hidden; // если используете на сайте position: sticky - уберите эту настройку
+}
+
+.content__display {
+  &--close {
+    --button-background: #fff;
+    --button-text: 12,49,84;
+    padding: 0.5rem;
+    border-radius: 8px;
+    position: absolute;
+    right: 10px;
+    background: var(--button-background);
+    color: rgb(var(--button-text));
+    margin-top: 1rem;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+
+  &--close:hover {
+    --button-background: #fff;
+    --button-text: 12,49,84;
+    background: linear-gradient(rgba(var(--button-text),.15),rgba(var(--button-text),.15)),linear-gradient(var(--button-background),var(--button-background));
+    cursor: pointer;
+    color: unset;
+    text-decoration: none;
+  }
+
+
+  @media (max-width: 1100px) {
+    .content-part {
+      &__text {
+        h1 {
+          font-size: 2.25rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 850px) {
+    .content-part {
+      &__text {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: .8rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 772px) {
+
+    .content-part__text, .modal-prev-title {
+      display: none;
+    }
+
+    .content-part__form, .modal-prev-form {
+      width: 100%!important;
+      padding: 10px!important;
+    }
+
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1260px;
+}
+
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pointer-element {
+  pointer-events: none !important;
+}
+
+@media (max-width: 772px) {
+  .container-fluid, .content-part, .content__display {
+    padding: 0!important;
+    margin: 0!important;
+  }
+  #modal_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .content-part__text {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .content-part__form {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      width: auto;
+      background-color: #ffffff;
+    }
+
+    .content__display--close {
+      top: 0;
+    }
+  }
+}
