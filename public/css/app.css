@@ -70575,7 +70575,7 @@ a {
     align-items: end;
     margin-right: 30px;
     position: absolute;
-    top: 0;
+    top: 6px;
     right: 0;
     width: 26px;
     height: 26px;
@@ -70693,7 +70693,6 @@ a {
 .content__list {
   z-index: 1;
   width: 100%;
-  min-height: 3500px;
   background: var(--color-light);
 }
 .content__list .content {

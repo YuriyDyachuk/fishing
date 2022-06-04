@@ -15,7 +15,7 @@ abstract class AbstractRepository
      */
     protected Model $model;
 
-    public int $perPage = 3;
+    public int $perPage = 9;
 
     /**
      * @throws BindingResolutionException

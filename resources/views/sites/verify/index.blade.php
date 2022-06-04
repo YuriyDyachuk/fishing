@@ -16,6 +16,7 @@
 
     <section>
         <div class="container-fluid content-part" id="modal_page">
+            @include('_include.errors')
             <a href="{{ route('main') }}" class="content__display--close">&times;</a>
             <div class="content-part__text">
                 <div class="text-trench">Step 2/2</div>

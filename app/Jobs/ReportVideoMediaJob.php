@@ -33,7 +33,7 @@ class ReportVideoMediaJob implements ShouldQueue
     public function handle()
     {
         $fileName = Str::random(30) . '.mp4';
-        $watermarkPath = public_path('images/marker.png');
+        $watermarkPath = public_path('watermark.png');
         $file = FFMpeg::fromDisk('public')
             ->open($this->path)
             ->addFilter(function (VideoFilters $filters) use ($watermarkPath) {
@@ -42,8 +42,8 @@ class ReportVideoMediaJob implements ShouldQueue
                     'position' => 'relative',
                     'top' => 20,
                     'left' => 20,
-                    'width' => 38,
-                    'height' => 51,
+                    'width' => 60,
+                    'height' => 62,
                 ]);
             })
             ->export()

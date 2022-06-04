@@ -44,7 +44,7 @@ function changeSelectRegion(map) {
 
         $.ajax({
             type: 'GET',
-            url : 'http://localhost:3030/region/' + regionId,
+            url : 'http://xn--m1aaxj.xn--90ais/region/' + regionId,
             cache: false,
             contentType: false,
             processData: false,

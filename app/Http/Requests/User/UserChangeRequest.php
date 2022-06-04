@@ -34,7 +34,8 @@ class UserChangeRequest extends FormRequest
             'password_confirmation' => ['nullable', 'min:6'],
             'gender' => ['string'],
             'bio' => ['nullable', 'string', 'max:500'],
-            'birthday' => ['string']
+            'birthday' => ['nullable', 'string'],
+            'сшен' => ['nullable', 'string']
         ];
     }
 }

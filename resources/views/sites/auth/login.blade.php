@@ -18,7 +18,7 @@
         <div class="container-fluid content-part content__display">
             <a href="{{ route('main') }}" class="content__display--close">&times;</a>
             <div class="content-part__text">
-                <h1>Welcome back to Fishbrain</h1>
+                <h1>Welcome back to НХНЧ.БЕЛ</h1>
             </div>
             <div class="content-part__form">
                 <div class="sm:w-col-6 md:w-col-3 flex flex-col">

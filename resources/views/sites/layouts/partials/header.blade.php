@@ -1,7 +1,7 @@
 <header class="header header--main">
     <div class="container header__container">
         <a href="{{ route('main') }}" class="logo">
-            <img src="{{ asset('images/ava.jpeg') }}" alt="Fishing Logo">
+            <img src="{{ asset('images/ava.png') }}" style="width: 70px!important;" alt="Fishing Logo">
         </a>
 
         <nav class="nav header__nav">
@@ -58,7 +58,7 @@
     </div>
     <div class="burger-menu">
         <a href="{{ route('main') }}" class="logo">
-            <img src="{{ asset('images/ava.jpeg') }}" style="width: 11%;margin-left: 20px;" alt="Fishing Logo">
+            <img src="{{ asset('images/ava.png') }}" style="width: 11%;margin-left: 20px;" alt="Fishing Logo">
         </a>
         <input id="menu-toggle" type="checkbox" />
         <label class="menu-btn" for="menu-toggle">

@@ -30,10 +30,10 @@ class ProfileController extends Controller
         $paginate = $user->setRelation('reports', $user->reports()->paginate(2));
 
         return view('sites.profiles.index', [
-            'user' => $user,
-            'paginate' => $paginate,
-            'interests' => Interest::query()->get()
-        ]);
+                    'user' => $user,
+                    'paginate' => $paginate,
+                    'interests' => Interest::query()->get()
+                ]);
     }
 
     public function update(UserChangeRequest $request, int $id): RedirectResponse

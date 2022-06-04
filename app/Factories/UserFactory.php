@@ -15,12 +15,12 @@ class UserFactory
         return new UserDTO([
             'gender' => $request->has('gender') ? (int) $request->input('gender') : null,
             'bio' => !is_null($request->input('bio')) ? $request->input('bio') : null,
-            'city' => $request->has('city') ? $request->input('city') : null,
+            'city' => !is_null($request->input('city')) ? $request->input('city') : auth()->user()->city,
             'name' => trim($request->input('name')),
             'email' => trim($request->input('email')),
             'phone' => trim($request->input('phone')),
             'password' => bcrypt($request->input('password')),
-            'birthday' => $request->has('birthday') ? Carbon::parse($request->input('birthday')) : null
+            'birthday' => !is_null($request->input('birthday')) ? Carbon::parse($request->input('birthday')) : auth()->user()->birthday
         ]);
     }
 }

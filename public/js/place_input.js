@@ -16,7 +16,7 @@ function initMap() {
     address1Field = document.querySelector("#ship-address");
     address2Field = document.querySelector("#place-address");
     autocomplete = new google.maps.places.Autocomplete(address1Field, {
-        componentRestrictions: { country: ["by","ru"] },
+        componentRestrictions: { country: ["by"] },
         fields: ["address_components", "geometry"],
         types: ["geocode"],
     });

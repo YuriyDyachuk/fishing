@@ -288,9 +288,6 @@
                                                                               max="9999-12-31T23:59"
                                                                               class="form-control">
                                                                    </div>
-                                                               @else
-                                                                   <label for="inputDate">Дата рождения</label>
-                                                                   <input type="text" value="{{ $user->birthday->format('d.m.Y') }}" id="inputDate" class="form-control" disabled>
                                                                @endif
                                                            </div>
                                                        </div>
@@ -315,6 +312,7 @@
                                                                            class="form-control"
                                                                            id="ship-address"
                                                                            autocomplete="off"
+                                                                           value="{{ $user->city }}"
                                                                    />
                                                                </div>
                                                            </div>
@@ -391,7 +389,7 @@
 
     <!-- Google maps -->
     <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDIVbuYf-Sxc456q1F_cMcWc2OoWsVJxU&libraries=places&callback=initMap"
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_PLACE_KEY') }}&language=ru&libraries=places&callback=initMap"
             defer></script>
 
     <script type="text/javascript" src="{{ asset('js/place_input.js') }}"></script>
@@ -500,7 +498,7 @@
         }
 
         function followersDomElement(el) {
-            let urlPost = 'http://localhost:3030/profile/' + el['id'];
+            let urlPost = 'http://xn--m1aaxj.xn--90ais/profile/' + el['id'];
 
             return `
                 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">

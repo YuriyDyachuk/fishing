@@ -3,7 +3,7 @@
         <div class="d-flex flex-row justify-content-between">
             <div class="ms-3">
                 <a href="{{ route('customer.profile.show', $comment->user->id) }}">
-                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
+                    <img src="{{ $comment->user->getFirstMediaUrl('media', 'media') }}" alt="" style="width: 45px; height: 45px"
                          class="rounded-circle" />
                 </a>
                 <small class="fw-hold fw-5 ml-1 p-1">{{ $comment->user->name }} {{ $comment->customDate }}</small>

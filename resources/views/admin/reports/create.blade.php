@@ -93,7 +93,7 @@
 
     <!-- Google maps -->
     <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDIVbuYf-Sxc456q1F_cMcWc2OoWsVJxU&libraries=places&callback=initMap"
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_PLACE_KEY') }}&libraries=places&callback=initMap"
             defer></script>
 
     <script type="text/javascript" src="{{ asset('js/google-map_new-report.js') }}"></script>

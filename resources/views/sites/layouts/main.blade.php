@@ -128,10 +128,6 @@
 
     @stack('scripts')
 
-    <!-- Google search place -->
-    <!-- <script async
-            src="https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyBDIVbuYf-Sxc456q1F_cMcWc2OoWsVJxU&callback=initMap"
-            defer></script> -->
 </div>
 </body>
 </html>
