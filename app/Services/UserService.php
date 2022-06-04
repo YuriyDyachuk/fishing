@@ -106,6 +106,6 @@ class UserService
             $user->media()->first()->delete();
         }
 
-        $user->addMedia($media)->toMediaCollection('media', 'media')->get;
+        $user->addMedia($media)->toMediaCollection('media', 'media');
     }
 }
