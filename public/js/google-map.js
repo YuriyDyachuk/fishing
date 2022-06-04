@@ -1,6 +1,6 @@
 var default_zoom = 8,
-    default_center_lat = 48.411083,
-    default_center_lng = 34.987417,
+    default_center_lat = 53.894473,
+    default_center_lng = 27.561389,
     default_marker_size = 36,
     default_marker_scaled_size = 36,
     displayRoute = true,

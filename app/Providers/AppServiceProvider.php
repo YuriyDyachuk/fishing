@@ -18,8 +18,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserInterface::class, UserRepository::class);
-        $this->app->bind(\App\Contract\Admin\UserInterface::class, \App\Repositories\Admin\UserRepository::class);
         $this->app->bind(ReportInterface::class, ReportRepository::class);
+
+        /* ADMIN */
+        $this->app->bind(\App\Contract\Admin\UserInterface::class, \App\Repositories\Admin\UserRepository::class);
+        $this->app->bind(\App\Contract\Admin\ReportInterface::class, \App\Repositories\Admin\ReportRepository::class);
+        $this->app->bind(\App\Contract\Admin\RegionInterface::class, \App\Repositories\Admin\RegionRepository::class);
     }
 
     /**
