@@ -2,10 +2,8 @@
 
 @section('content')
 
+    @include('_include.errors')
     <div class="content-box profile-page dashboard-content" id="dashboard">
-
-        @include('_include.errors')
-
         <div class="container  mt-5  px-lg-5">
             <ul id="docs-nav-pills" class="nav nav-pills mb-4" role="tablist">
                 <li class="nav-item">

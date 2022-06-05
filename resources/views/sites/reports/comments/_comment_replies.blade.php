@@ -3,7 +3,11 @@
         <div class="d-flex flex-row justify-content-between">
             <div class="ms-3">
                 <a href="{{ route('customer.profile.show', $comment->user->id) }}">
-                    <img src="{{ $comment->user->getFirstMediaUrl('media', 'media') }}" alt="" style="width: 45px; height: 45px"
+                    <img src="@if($comment->user->media('media')->exists())
+                    {{ $comment->user->getFirstMediaUrl('media') }}
+                    @else {{ asset('images/user/user-128.png') }}
+                    @endif" alt="ava"
+                         style="width: 80px; height: 80px"
                          class="rounded-circle" />
                 </a>
                 <small class="fw-hold fw-5 ml-1 p-1">{{ $comment->user->name }} {{ $comment->customDate }}</small>
@@ -16,13 +20,6 @@
                         <span class="badge bg-danger ms-2 comment" id="countComment-{{ $comment->id }}"></span>
                     </i>
                 </a>
-{{--                @auth()--}}
-{{--                    @if($comment->user->id === auth()->id())--}}
-{{--                        <a class="btn btn-link btn-rounded btn-sm" role="button" id="editComment">--}}
-{{--                            <i class="fas fa-pen"></i>--}}
-{{--                        </a>--}}
-{{--                    @endif--}}
-{{--                @endauth--}}
             </div>
         </div>
 

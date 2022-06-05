@@ -70556,7 +70556,6 @@ a {
   justify-content: space-around;
 }
 .header--main {
-  margin-bottom: 100px;
   background-color: var(--color-light);
   border-bottom: 1px solid #bec1e2;
 }
@@ -71316,13 +71315,39 @@ button.button-style1, button.button-style1:active, button.button-style1:focus, b
 }
 .parallax--footer {
   /* Set a specific height */
-  min-height: 700px;
+  background: url("/images/footer/ice_fising_footer_origin.png") no-repeat fixed bottom;
+  min-height: 600px;
   /* Create the parallax scrolling effect */
-  background-size: cover;
+  background-size: contain;
 }
 
 .content__list--footer--title {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .parallax--footer {
+    background: url("/images/footer/ice_fising_footer_1024.png") no-repeat fixed bottom;
+    min-height: 500px;
+  }
+}
+@media (max-width: 792px) {
+  .parallax--footer {
+    background: url("/images/footer/ice_fising_footer_792.png") no-repeat fixed bottom;
+    min-height: 400px;
+  }
+}
+@media (max-width: 600px) {
+  .parallax--footer {
+    background: url("/images/footer/ice_fising_footer_600.png") no-repeat fixed bottom;
+    min-height: 300px;
+  }
+}
+@media (max-width: 360px) {
+  .parallax--footer {
+    background: url("/images/footer/ice_fising_footer_360.png") no-repeat fixed bottom;
+    min-height: 200px;
+  }
 }

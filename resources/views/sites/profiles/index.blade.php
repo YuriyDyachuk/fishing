@@ -1,6 +1,7 @@
 @extends('sites.layouts.main')
 @section('content')
 
+    @include('_include.errors')
     <div class="content-box profile-page dashboard-content" id="dashboard">
 
         <div class="content-box analytics-page">
@@ -10,7 +11,6 @@
                        <!-- /.col -->
                        <div class="col-md-12 p-1">
                            <div class="row">
-                               @include('_include.errors')
                                <div class="col-md-3 p-1">
 
                                    <!-- Profile Image -->
@@ -18,8 +18,9 @@
                                        <div class="card-body box-profile">
                                            <div class="text-center">
                                                <img class="profile-user-img img-fluid img-circle"
-                                                    src="{{ $user->getFirstMediaUrl('media') }}"
-                                                    alt="User profile picture">
+                                                    src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                                    alt="User profile picture"
+                                               style="width: 80px;height: 80px; border: none;">
                                            </div>
 
                                            <h3 class="profile-username text-center">{{ $user->name }}</h3>
@@ -143,96 +144,6 @@
                                                                        <button id="btn2" class="trigger btn" onclick="ajaxLoaderFollower()" style="opacity: 1;">Загрузить</button>
                                                                    </div>
                                                                </div>
-
-                                                               <!-- DIRECT CHAT WARNING -->
-                                                               <div class="card card-warning direct-chat direct-chat-warning shadow d-none" id="chatOpen">
-                                                                   <div class="card-header">
-                                                                       <h3 class="card-title">Shadow - Regular</h3>
-
-                                                                       <div class="card-tools">
-                                                                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                                               <i class="fas fa-minus"></i>
-                                                                           </button>
-                                                                           <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                                               <i class="fas fa-times"></i>
-                                                                           </button>
-                                                                       </div>
-                                                                   </div>
-                                                                   <!-- /.card-header -->
-                                                                   <div class="card-body">
-                                                                       <!-- Conversations are loaded here -->
-                                                                       <div class="direct-chat-messages">
-                                                                           <!-- Message. Default to the left -->
-                                                                           <div class="direct-chat-msg">
-                                                                               <div class="direct-chat-infos clearfix">
-                                                                                   <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                                                                   <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
-                                                                               </div>
-                                                                               <!-- /.direct-chat-infos -->
-                                                                               <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
-                                                                               <!-- /.direct-chat-img -->
-                                                                               <div class="direct-chat-text">
-                                                                                   Is this template really for free? That's unbelievable!
-                                                                               </div>
-                                                                               <!-- /.direct-chat-text -->
-                                                                           </div>
-                                                                           <!-- /.direct-chat-msg -->
-
-                                                                           <!-- Message to the right -->
-                                                                           <div class="direct-chat-msg right">
-                                                                               <div class="direct-chat-infos clearfix">
-                                                                                   <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                                                                   <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                                                               </div>
-                                                                               <!-- /.direct-chat-infos -->
-                                                                               <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
-                                                                               <!-- /.direct-chat-img -->
-                                                                               <div class="direct-chat-text">
-                                                                                   You better believe it!
-                                                                               </div>
-                                                                               <!-- /.direct-chat-text -->
-                                                                           </div>
-                                                                           <!-- /.direct-chat-msg -->
-                                                                       </div>
-                                                                       <!--/.direct-chat-messages-->
-
-                                                                       <!-- Contacts are loaded here -->
-                                                                       <div class="direct-chat-contacts">
-                                                                           <ul class="contacts-list">
-                                                                               <li>
-                                                                                   <a href="#">
-                                                                                       <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
-
-                                                                                       <div class="contacts-list-info">
-                                                                              <span class="contacts-list-name">
-                                                                                Count Dracula
-                                                                                <small class="contacts-list-date float-right">2/28/2015</small>
-                                                                              </span>
-                                                                                           <span class="contacts-list-msg">How have you been? I was...</span>
-                                                                                       </div>
-                                                                                       <!-- /.contacts-list-info -->
-                                                                                   </a>
-                                                                               </li>
-                                                                               <!-- End Contact Item -->
-                                                                           </ul>
-                                                                           <!-- /.contatcts-list -->
-                                                                       </div>
-                                                                       <!-- /.direct-chat-pane -->
-                                                                   </div>
-                                                                   <!-- /.card-body -->
-                                                                   <div class="card-footer">
-                                                                       <form action="#" method="post">
-                                                                           <div class="input-group">
-                                                                               <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                                                                               <span class="input-group-append">
-                                                                  <button type="submit" class="btn btn-warning">Send</button>
-                                                                </span>
-                                                                           </div>
-                                                                       </form>
-                                                                   </div>
-                                                                   <!-- /.card-footer-->
-                                                               </div>
-                                                               <!--/.direct-chat -->
                                                            </div>
                                                            <!-- /.card-body -->
                                                        </div>
@@ -479,7 +390,7 @@
                 url: url,
                 data: {id: id},
                 success: function (data) {
-                    console.log(data)
+
                     var followers = data.data;
                     if (data.pageOff == true) {
                         document.getElementById('btn2').style.display = 'none';
@@ -555,7 +466,7 @@
                     beforeSend: function() { checkbox.disabled = true; },
                     complete: function() { checkbox.disabled = false; },
                     success: function(response) {
-                        console.log(response);
+
                     }
                 });
             }

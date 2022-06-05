@@ -37,7 +37,8 @@
                                         <td>
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
-                                                    <img alt="Avatar" class="table-avatar" src="{{ $user->getFirstMediaUrl('media') }}">
+                                                    <img alt="Avatar" class="table-avatar" src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                                    style="width: 80px;height: 80px;">
                                                 </li>
                                             </ul>
                                         </td>
@@ -56,18 +57,6 @@
                                             </span>
                                         </td>
                                         <td class="project-actions text-right d-flex justify-content-center">
-{{--                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.users.show', $user->id) }}">--}}
-{{--                                                <i class="fas fa-folder">--}}
-{{--                                                </i>--}}
-{{--                                                View--}}
-{{--                                            </a>--}}
-{{--                                            @if(auth()->id() === $user->id)--}}
-{{--                                                <a class="btn btn-info btn-sm" href="{{ route('admin.users.edit', $user->id) }}">--}}
-{{--                                                    <i class="fas fa-pencil-alt">--}}
-{{--                                                    </i>--}}
-{{--                                                    Edit--}}
-{{--                                                </a>--}}
-{{--                                            @endif--}}
                                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

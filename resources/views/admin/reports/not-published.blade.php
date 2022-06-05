@@ -48,7 +48,8 @@
                                         <td>
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
-                                                    <img alt="Avatar" class="table-avatar" src="../../dist/img/avatar.png">
+                                                    <img alt="Avatar" class="table-avatar" src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                                    style="width: 80px;height: 80px;">
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <a href="{{ route('admin.users.show', $report->user->id) }}" class="fw-bold">

@@ -24,8 +24,8 @@ class MediaEnum extends Enum
     public static function values(): array
     {
         return [
-            'width'             => 600,
-            'height'            => 335,
+            'width'             => 854,
+            'height'            => 480,
             'formatPNG'         => 'png',
             'formatMP4'         => 'video/mp4',
             'formatXFLV'        => 'video/x-flv',

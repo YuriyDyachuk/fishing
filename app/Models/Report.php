@@ -55,7 +55,7 @@ class Report extends Model implements HasMedia
 
     public function getCustomDateAttribute(): string
     {
-        return Carbon::parse($this->created_at)->format('m.d.Y');
+        return Carbon::parse($this->created_at)->format('d.m.Y');
     }
 
     //================================== [CUSTOM METHODS MEDIA LIBRARY] ==================================#
@@ -63,20 +63,17 @@ class Report extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('gallery')
-//            ->withResponsiveImages()
             ->registerMediaConversions(function (Media $media) {
                 $this
                     ->addMediaConversion('small')
                     ->width(MediaEnum::width()->value)
                     ->height(MediaEnum::height()->value)
-                    ->watermark(public_path('watermark.png'))
+                    ->watermark(public_path('watermark_fix.png'))
                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                    ->watermarkWidth(40)
-                    ->watermarkHeight(42)
+                    ->watermarkWidth(50)
+                    ->watermarkHeight(50)
                     ->watermarkPadding(10,10)
-                    ->watermarkOpacity(60)
-                    ->sharpen(10)
-                    ->nonQueued();
+                    ->watermarkOpacity(80);
             });
     }
 }

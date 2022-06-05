@@ -2,11 +2,11 @@
 
 @section('content')
 
+    @include('_include.errors')
     <!-- Div the parallax scrolling effect -->
     <div class="parallax">
         <!-- Main content -->
         <div class="container d-flex flex-row justify-content-around mb-4 map-wrapper" style="margin-top: 100px;">
-            @include('_include.errors')
             <div class="padding-right-0 d-none" id="locations-map">
                 <div class="region d-flex flex-column align-items-center m-2 mt-4">
                     <label for="region" class="pr-1 w-100 text-center">Укажите регион:</label>

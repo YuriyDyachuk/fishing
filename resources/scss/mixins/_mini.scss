@@ -103,7 +103,8 @@ margin-bottom: 20px;
 
 @mixin paralax-footer {
   /* Set a specific height */
-  min-height: 700px;
+  background: url('/images/footer/ice_fising_footer_origin.png') no-repeat fixed bottom;
+  min-height: 600px;
   /* Create the parallax scrolling effect */
-  background-size: cover;
+  background-size: contain;
 }

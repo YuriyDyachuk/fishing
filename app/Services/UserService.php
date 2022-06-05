@@ -32,9 +32,7 @@ class UserService
 
     public function create(UserDTO $DTO): void
     {
-        $user = $this->userRepository->create($DTO);
-        $user->viberVerify()->create(['code' => generateCode()]);
-//        dispatch(new SendCodeViberJob($user->viberVerify->code));
+        $this->userRepository->create($DTO);
     }
 
     public function findById(int $id): ?User

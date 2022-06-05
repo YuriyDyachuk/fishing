@@ -38,7 +38,8 @@
                                         <td>
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
-                                                    <img alt="Avatar" class="table-avatar" src="{{ $user->getFirstMediaUrl('media') }}">
+                                                    <img alt="Avatar" class="table-avatar" src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                                    style="width: 80px;height: 80px;">
                                                 </li>
                                             </ul>
                                         </td>

@@ -43,9 +43,12 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <img
-                                                        src="{{ $report->user->getFirstMediaUrl('media') }}"
-                                                        alt=""
-                                                        style="width: 45px; height: 45px"
+                                                        src="@if($report->user->media('media')->exists())
+                                                        {{ $report->user->getFirstMediaUrl('media') }}
+                                                        @else {{ asset('images/user/user-128.png') }}
+                                                        @endif"
+                                                        alt="ava"
+                                                        style="width: 80px; height: 80px"
                                                         class="rounded-circle"
                                                 />
                                                 <div class="ms-3">
@@ -182,6 +185,10 @@
 @endsection
 
 @push('scripts')
+
+    <!-- Cookies -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
     <script>
         var popap = document.getElementById("popap");
         var send = document.querySelectorAll("#editComment");

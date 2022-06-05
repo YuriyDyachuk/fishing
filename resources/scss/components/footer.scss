@@ -7,3 +7,32 @@
     @include flex-all-center;
   }
 }
+
+
+@media (max-width: 1200px) {
+  .parallax--footer {
+    background: url('/images/footer/ice_fising_footer_1024.png') no-repeat fixed bottom;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 792px) {
+  .parallax--footer {
+    background: url('/images/footer/ice_fising_footer_792.png') no-repeat fixed bottom;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .parallax--footer {
+    background: url('/images/footer/ice_fising_footer_600.png') no-repeat fixed bottom;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 360px) {
+  .parallax--footer {
+    background: url('/images/footer/ice_fising_footer_360.png') no-repeat fixed bottom;
+    min-height: 200px;
+  }
+}

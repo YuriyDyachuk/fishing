@@ -22,7 +22,8 @@
                     <ul class="list-group list-group-light">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <img src="{{ $report->user->getFirstMediaUrl('media') }}" alt="" style="width: 45px; height: 45px"
+                                <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
+                                     style="width: 80px; height: 80px"
                                      class="rounded-circle" />
                                 <div class="ms-3">
                                     <a href="{{ route('customer.profile.show', $report->user->id) }}">
@@ -44,7 +45,8 @@
                             <ul class="list-group list-group-light">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ $comment->user->getFirstMediaUrl('media') }}" alt="" style="width: 45px; height: 45px"
+                                        <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
+                                             style="width: 80px; height: 80px"
                                              class="rounded-circle" />
                                         <div class="ms-3">
                                             <a href="{{ route('customer.profile.show', $comment->user->id) }}">

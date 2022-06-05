@@ -16,7 +16,9 @@
                         &nbsp;
                         <div class="post clearfix mt-3">
                             <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="{{ asset('dist/img/user7-128x128.jpg') }}" alt="User Image">
+                                <img class="img-circle img-bordered-sm" src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                     style="width: 80px;height: 80px;"
+                                     alt="User Image">
                                 <span class="username">
                           <a href="{{ route('admin.users.show', $report->user->id) }}">{{ $report->user->name }}</a>
                         </span>
@@ -99,7 +101,9 @@
                                 @foreach($report->comments as $comment)
                                     <div class="post">
                                     <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="{{ $comment->user->getFirstMediaUrl('media') }}" alt="user image">
+                                        <img class="img-circle img-bordered-sm" src="@if($comment->user->media('media')->exists()) {{ $comment->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                             style="width: 80px;height: 80px;"
+                                             alt="user image">
                                         <span class="username">
                                           <a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->name }}</a>
                                         </span>

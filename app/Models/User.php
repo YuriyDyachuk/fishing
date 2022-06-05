@@ -181,8 +181,8 @@ class User extends Authenticatable implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaConversion('gallery')
-             ->width(50)
-             ->height(50);
+        $this->addMediaConversion('small')
+             ->width(80)
+             ->height(80);
     }
 }

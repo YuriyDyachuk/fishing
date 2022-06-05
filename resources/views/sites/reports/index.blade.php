@@ -37,13 +37,14 @@
             let pageNext = document.getElementById('page').value;
             let page = Number(pageNext) + 1;
             var url = "{{ route('reporting.load') }}" + "?page=" + page;
-            console.log(url)
+
             $.ajax({
                 type: 'GET',
                 url: url,
                 success: function (data) {
                     var reports = data.data;
-                    if (data.pageOff == true) {
+                    console.log(data)
+                    if (data.pageOff === false) {
                         document.getElementById('btn1').style.display = 'none';
                     }
 

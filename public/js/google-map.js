@@ -90,7 +90,6 @@ function initMap() {
 
             $('#collectGroup').click(function (el) {
                 el.preventDefault();
-                console.log(12313)
                 var regionId = $('#region').val();
                 var mapDate = $('#mapDate').val();
                 var mapDateRange = $('#mapDateRange').val();
