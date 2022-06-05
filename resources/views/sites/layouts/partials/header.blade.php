@@ -1,7 +1,7 @@
 <header class="header header--main">
     <div class="container header__container">
         <a href="{{ route('main') }}" class="logo">
-            <img src="{{ asset('images/Logo.svg') }}" style="width: 70px!important;" alt="Fishing Logo">
+            <img src="{{ asset('images/Logo.svg') }}" style="width: 70px!important;height: 70px!important;" alt="Fishing Logo">
         </a>
 
         <nav class="nav header__nav">

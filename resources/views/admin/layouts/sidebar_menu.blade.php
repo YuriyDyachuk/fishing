@@ -4,7 +4,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                <img src="@if(auth()->user()->media('media')->exists()) {{ auth()->user()->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
                      class="img-circle elevation-2"
                      style="width: 80px;height: 80px;"
                      alt="User Image">
