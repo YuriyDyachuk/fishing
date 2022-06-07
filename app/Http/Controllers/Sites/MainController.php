@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Sites;
 
-use App\Factories\ReportSearchFactory;
-use App\Services\ReportService;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Services\ReportService;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Factories\ReportSearchFactory;
 
 class MainController extends Controller
 {

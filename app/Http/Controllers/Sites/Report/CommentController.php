@@ -16,7 +16,7 @@ class CommentController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $comment = new Comment;
-        $comment->body = $request->get('comment');
+        $comment->body = $request->input('comment');
         $comment->user()->associate($request->user());
         $post = Report::query()->find($request->get('repostId'));
         $post->comments()->save($comment);

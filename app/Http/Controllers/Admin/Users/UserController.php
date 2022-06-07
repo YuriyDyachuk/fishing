@@ -49,7 +49,7 @@ class UserController extends Controller
         $userVO = $this->userAdminFactory->create($request);
         $this->userService->changeRoleAndBan($id, $userVO);
 
-        return redirect()->route('admin.users.moderat')->with(['success' => 'Пользователь успешно обновлен.'])->withInput();
+        return redirect()->route('admin.users.index')->with(['success' => 'Пользователь успешно обновлен.'])->withInput();
     }
 
     public function destroy(int $id): RedirectResponse
@@ -64,19 +64,5 @@ class UserController extends Controller
         return view('admin.users.moderation', [
                     'users' => $this->userService->moderationUser()
                 ]);
-    }
-
-    public function banned(int $id): RedirectResponse
-    {
-        $this->userService->bannedAdmin($id);
-
-        return redirect()->back()->with(['success' => 'Пользователь успешно забанен.'])->withInput();
-    }
-
-    public function unBanned(int $id): RedirectResponse
-    {
-        $this->userService->bannedAdmin($id);
-
-        return redirect()->back()->with(['success' => 'Пользователь успешно забанен.'])->withInput();
     }
 }

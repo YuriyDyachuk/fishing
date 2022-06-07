@@ -16,8 +16,8 @@
                         &nbsp;
                         <div class="post clearfix mt-3">
                             <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
-                                     style="width: 80px;height: 80px;"
+                                <img class="img-circle img-bordered-sm mr-3" src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                     style="width: 50px;height: 50px;"
                                      alt="User Image">
                                 <span class="username">
                           <a href="{{ route('admin.users.show', $report->user->id) }}">{{ $report->user->name }}</a>

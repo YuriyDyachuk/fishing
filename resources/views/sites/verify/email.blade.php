@@ -38,6 +38,10 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/register_login.js') }}"></script>
+
+    <script>
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+    </script>
 </div>
 </body>
 </html>

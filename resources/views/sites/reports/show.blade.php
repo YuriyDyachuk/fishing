@@ -13,7 +13,7 @@
                 <div class="row d-flex align-items-start mb-4">
                     <div class="col">
                         <p class="text-center">Описание</p>
-                        <small class="fw-hold">{{ $report->description }}</small>
+                        <small class="fw-hold">{{ strip_tags($report->description) }}</small>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                                                         @else {{ asset('images/user/user-128.png') }}
                                                         @endif"
                                                         alt="ava"
-                                                        style="width: 80px; height: 80px"
+                                                        style="width: 50px; height: 50px"
                                                         class="rounded-circle"
                                                 />
                                                 <div class="ms-3">
@@ -145,7 +145,7 @@
 
                     <div class="ticket-comments alert alert-warning text-center m-0 @if(!auth()->user()) d-block @else d-none @endif">
                         <p class="m-0">Вы должны авторизоваться, чтобы оставлять комментарии.</p>
-                        <small><a href="{{ route('login') }}">Login</a></small>
+                        <small><a href="{{ route('login') }}" style="color: #000000">Login</a></small>
                     </div>
 
                     @auth()
@@ -160,8 +160,7 @@
                                                                       name="comment"
                                                                       id="form6Example7"
                                                                       required
-                                                                      rows="4">{{ old('comment') ?? '' }}</textarea>
-                                    <label class="form-label" for="form6Example7">Комментарий</label>
+                                                                      rows="4"></textarea>
                                 </div>
                                 <!-- Submit button -->
                                 <input type="hidden" name="repostId" value="{{ $report->id }}">

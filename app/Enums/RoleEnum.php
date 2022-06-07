@@ -21,4 +21,12 @@ class RoleEnum extends Enum
             'CUSTOMER' => 3
         ];
     }
+
+    public static function getRole(): array
+    {
+        return [
+            self::ADMIN()->value,
+            self::MODERATOR()->value
+        ];
+    }
 }

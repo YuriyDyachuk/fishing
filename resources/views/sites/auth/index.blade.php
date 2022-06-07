@@ -23,18 +23,20 @@
                 <p>Неограниченный бесплатный доступ к лучшим местам для рыбалки</p>
             </div>
             <div class="content-part__form modal-prev-form">
+                @include('_include.errors')
                 <div class="content-part__form__email">
                     <a href="#" id="modal">
                         <i class="fas fa-at"></i>
-                        <span>Sign up with email</span>
+                        <span>Регистрация через email</span>
                     </a>
                 </div>
-                <p class="body-text-md text-center">Already on Fishbrain? <a href="{{ route('login') }}">Log in</a>.</p>
+                <p class="body-text-md text-center">Добро пожаловать на НХНЧ.БЕЛ</p>
+                <small><a href="{{ route('login') }}">Логин</a></small>
             </div>
 
             <!-- Modal register form -->
 
-            <div class="content-part__text d-none modal-next-title">
+            <div class="content-part__text d-none modal-next-title" id="modal-form" href="register-form">
                 <div class="text-trench">Step 1/2</div>
                 <h1>Зарегистрируйтесь со своей электронной почтой</h1>
                 <p>Создайте учетную запись, чтобы узнать больше</p>
@@ -44,26 +46,37 @@
                     <form action="{{ route('new.customer.register') }}" method="POST">
                         @csrf
                         <div class="mb-3 flex flex-col">
-                            <label for="Name" class="text-abyss mb-1 text-sm ">Name</label>
-                            <input id="name" placeholder="Name" class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight" type="text" name="name">
+                            <label for="Name" class="text-abyss mb-1 text-sm ">Имя <span class="red">*</span></label>
+                            <input id="name" required placeholder="Name"
+                                   class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight"
+                                   type="text" name="name"  value="{{ old('name') ?? '' }}">
                         </div>
                         <div class="mb-3 flex flex-col">
-                            <label for="email" class="text-abyss mb-1 text-sm ">Email</label>
-                            <input id="email" placeholder="Email" class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight" type="email" name="email">
+                            <label for="email" class="text-abyss mb-1 text-sm ">Почта <span class="red">*</span></label>
+                            <input id="email" required placeholder="Email"
+                                   class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight"
+                                   type="email" name="email" value="{{ old('email') ?? '' }}">
                         </div>
                         <div class="mb-3 flex flex-col">
-                            <label for="Phone" class="text-abyss mb-1 text-sm ">Phone</label>
-                            <input id="phone" placeholder="Phone" class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight" type="tel" name="phone">
+                            <label for="Phone" class="text-abyss mb-1 text-sm ">Телефон <span class="red">*</span></label>
+                            <input id="phone" required placeholder="Phone"
+                                   class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight"
+                                   type="tel" name="phone" value="{{ old('phone') ?? '' }}">
                         </div>
                         <div class="mb-3 flex flex-col">
-                            <label for="password" class="text-abyss mb-1 text-sm ">Password</label>
-                            <input id="password" placeholder="Password" class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight" type="password" name="password">
+                            <label for="password" class="text-abyss mb-1 text-sm ">Пароль <span class="red">*</span></label>
+                            <input id="password" required placeholder="Password"
+                                   class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight"
+                                   type="password" name="password">
                         </div>
                         <div class="mb-3 flex flex-col">
-                            <label for="Password confirmation" class="text-abyss mb-1 text-sm ">Password confirmation</label>
-                            <input id="password_confirmation" placeholder="Password confirmation" class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight" type="password" name="password_confirmation">
+                            <label for="Password confirmation" class="text-abyss mb-1 text-sm ">Подтвердите пароль <span class="red">*</span></label>
+                            <input id="password_confirmation" required placeholder="Password confirmation"
+                                   class="rounded-lg border p-3 text-base placeholder:text-midnight focus:border-abyss disabled:border-disabled disabled:bg-lake-fog disabled:text-disabled placeholder:disabled:text-disabled border-twilight"
+                                   type="password" name="password_confirmation">
                         </div>
-                        <button class="bg-deep-sea my-0 w-full disabled:cursor-not-allowed disabled:bg-disabled disabled:text-twilight inline-flex items-center font-heading font-medium  p-3 rounded-lg justify-center" type="submit">Continue</button>
+                        <button class="bg-deep-sea my-0 w-full disabled:cursor-not-allowed disabled:bg-disabled disabled:text-twilight inline-flex items-center font-heading font-medium  p-3 rounded-lg justify-center"
+                                type="submit">Continue</button>
                     </form>
                 </div>
             </div>
@@ -73,7 +86,9 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/register_login.js') }}"></script>
-
+    <script>
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+    </script>
 </div>
 </body>
 </html>

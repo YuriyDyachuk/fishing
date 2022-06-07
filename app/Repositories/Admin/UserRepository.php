@@ -21,6 +21,7 @@ class UserRepository extends AbstractRepository implements UserInterface
     public function getAll(): Collection
     {
         return $this->query()
+                    ->where('role', RoleEnum::CUSTOMER()->value)
                     ->orderBy('id', 'DESC')
                     ->get();
     }
@@ -54,7 +55,7 @@ class UserRepository extends AbstractRepository implements UserInterface
     public function moderationUser(): Collection
     {
         return $this->query()
-                    ->where('role','!=', RoleEnum::CUSTOMER()->value)
+                    ->whereIn('role', RoleEnum::getRole())
                     ->get()
                     ->filter(function ($user) {
                         return $user->id !== auth()->id();

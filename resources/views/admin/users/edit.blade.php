@@ -40,7 +40,7 @@
                                                    class="custom-control-input"
                                                    id="customSwitch1"
                                                    @if($user->ban) checked @endif />
-                                            <label class="custom-control-label" for="customSwitch1"> @if($user->ban) Ban @else Unban @endif</label>
+                                            <label class="custom-control-label" for="customSwitch1"> @if($user->ban) Unban @else Ban @endif</label>
                                         </div>
                                     </div>
 

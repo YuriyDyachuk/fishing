@@ -38,7 +38,7 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <img alt="Avatar" class="table-avatar" src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
-                                                    style="width: 80px;height: 80px;">
+                                                    style="width: 50px;height: 50px;">
                                                 </li>
                                             </ul>
                                         </td>
@@ -56,7 +56,12 @@
                                                 @if($user->ban) BANNED @else ACTIVE @endif
                                             </span>
                                         </td>
-                                        <td class="project-actions text-right d-flex justify-content-center">
+                                        <td class="project-actions text-right d-flex justify-content-around">
+                                            <a class="btn btn-info btn-sm" href="{{ route('admin.users.edit', $user->id) }}">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Edit
+                                            </a>
                                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -111,5 +116,7 @@
                 "responsive": true,
             });
         });
+
+        $('div.alert.alert-success').delay(3000).slideUp(300)
     </script>
 @endpush

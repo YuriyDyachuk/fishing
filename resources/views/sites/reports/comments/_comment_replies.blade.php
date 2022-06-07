@@ -7,7 +7,7 @@
                     {{ $comment->user->getFirstMediaUrl('media') }}
                     @else {{ asset('images/user/user-128.png') }}
                     @endif" alt="ava"
-                         style="width: 80px; height: 80px"
+                         style="width: 50px; height: 50px"
                          class="rounded-circle" />
                 </a>
                 <small class="fw-hold fw-5 ml-1 p-1">{{ $comment->user->name }} {{ $comment->customDate }}</small>

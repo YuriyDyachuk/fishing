@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use App\Factories\UserFactory;
+use App\Factories\AuthFactory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\User\UserLoginRequest;
@@ -14,14 +14,14 @@ use App\Http\Requests\User\UserRegisterRequest;
 
 class AuthController extends Controller
 {
-    protected UserFactory $userFactory;
+    protected AuthFactory $authFactory;
     protected UserService $userService;
 
     public function __construct(
-        UserFactory $userFactory,
+        AuthFactory $authFactory,
         UserService $userService
     ){
-        $this->userFactory = $userFactory;
+        $this->authFactory = $authFactory;
         $this->userService = $userService;
     }
 
@@ -42,17 +42,17 @@ class AuthController extends Controller
     {
         \DB::beginTransaction();
         try {
-            $DTO = $this->userFactory->store($request);
+            $DTO = $this->authFactory->store($request);
             $this->userService->create($DTO);
             \DB::commit();
 
         }catch (\Throwable $exception) {
             \DB::rollBack();
 
-            return redirect()->back()->withErrors(['errors' => $exception->getMessage()]);
+            return redirect()->back()->with(['error' => $exception->getMessage()])->withInput();
         }
 
-        return redirect()->route('new.customer.verify')->withInput(['success' => 'Successfully registration in services.']);
+        return redirect()->route('new.customer.verify')->with(['success' => 'Регистрация на сервисе прошла успешно.'])->withInput();
     }
 
     public function customLogin()
@@ -66,10 +66,15 @@ class AuthController extends Controller
     public function login(UserLoginRequest $request): RedirectResponse
     {
         try {
+            $user = $this->userService->getByEmail($request->input('email'));
             $credentials = $request->only('email', 'password');
+            if (!\Hash::check($request->input('password'), $user->password)) {
+                return redirect()->back()->with(['error' => 'Пароль введен неправильно!'])->withInput();
+            }
+
             \Auth::attempt($credentials, (int) $request->input('remember'));
         }catch (\Throwable $exception) {
-            return redirect()->back()->withErrors(['errors' => $exception->getMessage()]);
+            return redirect()->back()->with(['error' => $exception->getMessage()])->withInput();
         }
 
         return redirect()->route('main')->with(['success' => 'Вход выполнен успешно.'])->withInput();
@@ -80,6 +85,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         \Auth::logout();
 
-        return redirect()->route('main')->withInput(['success' => 'Выход успешно выполнен!.']);
+        return redirect()->route('main')->with(['success' => 'Выход успешно выполнен!.'])->withInput();
     }
 }

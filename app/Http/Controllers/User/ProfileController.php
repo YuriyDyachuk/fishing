@@ -38,7 +38,6 @@ class ProfileController extends Controller
 
     public function update(UserChangeRequest $request, int $id): RedirectResponse
     {
-
         $DTO = $this->userFactory->store($request);
         $this->userService->update($id, $DTO);
 
