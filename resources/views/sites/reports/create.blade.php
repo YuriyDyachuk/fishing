@@ -7,6 +7,9 @@
     .smile{
         cursor:pointer;
     }
+    .tox.tox-silver-sink.tox-tinymce-aux {
+        display: none!important;
+    }
 </style>
 
 @section('content')

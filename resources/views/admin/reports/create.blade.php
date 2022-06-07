@@ -1,5 +1,11 @@
 @extends('admin.index')
 
+<style>
+    .tox.tox-silver-sink.tox-tinymce-aux {
+        display: none!important;
+    }
+</style>
+
 @section('content')
     <!-- Main content -->
     <section class="content">
