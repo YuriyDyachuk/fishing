@@ -43,14 +43,16 @@
                role="button">Добавить отчет</a>
         @endif
 
-        <form action="{{ route('customer.profile.subscriber.cancel', [auth()->id(), $user->id]) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                    class="btn btn-danger mt-1" style="width: 100%;">
-                <i class="fas fa-trash-restore"></i> Отменить подписку
-            </button>
-        </form>
+        @if(auth()->id() !== (int) request()->route('id'))
+            <form action="{{ route('customer.profile.subscriber.cancel', [auth()->id(), $user->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="btn btn-danger mt-1" style="width: 100%;">
+                    <i class="fas fa-trash-restore"></i> Отменить подписку
+                </button>
+            </form>
+        @endif
 
     </div>
     <!-- /.card-body -->
