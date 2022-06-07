@@ -27,7 +27,7 @@ class UserChangeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:5'],
+            'name' => ['required', 'string', 'min:3'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'email', Rule::unique('users','id')->ignore((int) $this->id)],
             'gender' => ['string'],
