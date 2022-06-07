@@ -1,11 +1,5 @@
 @extends('sites.layouts.main')
 
-<style>
-    .tox.tox-silver-sink.tox-tinymce-aux {
-        display: none!important;
-    }
-</style>
-
 @section('content')
 
     @include('_include.errors')
