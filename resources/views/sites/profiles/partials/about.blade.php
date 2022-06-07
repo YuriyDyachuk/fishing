@@ -27,14 +27,14 @@
                    id="subscription"
                    role="button">Запрос отправлен
                 </a>
-            @else
-                <a class="btn btn-success @if(auth()->user()->isActiveSendFollowing($user->id))  @else d-none @endif"
+            @elseif(!in_array(auth()->id(), $user->getIdFollower()))
+                <a class="btn btn-success"
                    id="subscription"
                    href="{{ route('customer.subscription.contact', $user->id) }}"
-                   role="button">
-                    @if(auth()->user()->isActiveSendFollowing($user->id))
-                        Подтвердить подписку
-                    @endif Активный подписчик</a>
+                   role="button">Отправить запрос
+                </a>
+            @else
+
             @endif
         @endif
         @if(auth()->user()->id === (int) request()->route('id'))
@@ -42,6 +42,16 @@
                href="{{ route('reporting.create') }}"
                role="button">Добавить отчет</a>
         @endif
+
+        <form action="{{ route('customer.profile.subscriber.cancel', [auth()->id(), $user->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="btn btn-danger mt-1" style="width: 100%;">
+                <i class="fas fa-trash-restore"></i> Отменить подписку
+            </button>
+        </form>
+
     </div>
     <!-- /.card-body -->
 </div>

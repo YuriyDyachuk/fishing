@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Sites;
 
-use App\Services\UserService;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 use App\Services\ReportService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -53,7 +53,9 @@ class ReportLoadMoreController extends Controller
         if ($request->ajax()) {
             $followers = $userService->getAllFollowerUser((int) $request->id);
             foreach ($followers as $k=>$follower) {
-                $followers[$k]['avatar'] = $follower->getFirstMediaUrl('media','small');
+                $followers[$k]['avatar'] = $follower->media('media')->exists()
+                                            ? $follower->getFirstMediaUrl('media','small')
+                                            : asset('images/user/user-128.png');
             }
         }
 

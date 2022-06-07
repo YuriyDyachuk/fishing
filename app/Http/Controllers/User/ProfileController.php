@@ -27,12 +27,10 @@ class ProfileController extends Controller
     public function show(int $id)
     {
         $user = $this->userService->findById($id);
-        $paginate = $user->setRelation('reports', $user->reports()->paginate(2));
 
         return view('sites.profiles.index', [
                     'user' => $user,
-                    'paginate' => $paginate,
-                    'interests' => Interest::query()->get()
+                    'followers' => $this->userService->getMyFollow()
                 ]);
     }
 

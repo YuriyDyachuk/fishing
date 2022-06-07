@@ -12,6 +12,7 @@ use App\DataTransObject\UserDTO;
 use Illuminate\Http\UploadedFile;
 use App\Repositories\UserRepository;
 use App\Services\Media\MediaService;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 
@@ -96,6 +97,16 @@ class UserService
         $user = $this->findById($id);
 
         return $user->followersConfirm()->paginate(5);
+    }
+
+    public function getMyFollowers(): LengthAwarePaginator
+    {
+        return auth()->user()->followers()->wherePivot('confirmed', false)->paginate(10);
+    }
+
+    public function getMyFollow()
+    {
+        return auth()->user()->followersConfirm()->paginate(1);
     }
 
     #================================== [CUSTOM METHODS MEDIA LIBRARY] ==================================#

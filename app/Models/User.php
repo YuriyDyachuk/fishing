@@ -96,7 +96,7 @@ class User extends Authenticatable implements HasMedia
                 Follow::class,
                 'follow_id',
                 'follower_id'
-                )->withPivot('confirmed')->withTimestamps();
+                )->withPivot('confirmed', 'banned')->withTimestamps();
     }
 
     public function followersConfirm(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -106,7 +106,7 @@ class User extends Authenticatable implements HasMedia
                 Follow::class,
                 'follow_id',
                 'follower_id'
-                )->withPivot('confirmed')->wherePivot('confirmed', true);
+                )->withPivot('confirmed', 'banned')->wherePivot('confirmed', true);
     }
     /* End friends relations */
 
@@ -140,6 +140,11 @@ class User extends Authenticatable implements HasMedia
                         'confirmed' => true,
                         'banned' => false
                     ])->exists();
+    }
+
+    public function getIdFollower(): array
+    {
+        return $this->followersConfirm()->pluck('follower_id')->toArray();
     }
 
     public function isFollow(int $userId): bool

@@ -96,9 +96,14 @@ Route::middleware('auth')->group(function () {
 
             Route::post('subscription', [SubscribeController::class, 'store'])->name('customer.subscription.contact');
             Route::post('unsubscribe', [SubscribeController::class, 'destroy'])->name('customer.unsubscribe.contact');
-            Route::post('ban', [SubscribeController::class, 'ban'])->name('customer.subscription.ban');
+            Route::patch('ban', [SubscribeController::class, 'banned'])->name('customer.subscription.ban');
 
             Route::middleware('user.id')->group(function () {
+                Route::prefix('subscriber')->group(function () {
+                    Route::get('', [SubscribeController::class, 'index'])->name('customer.profile.subscribers');
+                    Route::patch('{followId}/apply', [SubscribeController::class, 'apply'])->name('customer.profile.subscriber.apply');
+                    Route::delete('{followId}/cancel', [SubscribeController::class, 'cancel'])->name('customer.profile.subscriber.cancel');
+                });
                 Route::patch('', [ProfileController::class, 'update'])->name('customer.profile.update');
                 Route::post('media', [MediaProfileController::class, 'store'])->name('customer.profile.media');
             });

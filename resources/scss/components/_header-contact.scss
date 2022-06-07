@@ -51,9 +51,6 @@
 }
 
 .auth-link {
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
 
   &--login {
     @include style-auth-component

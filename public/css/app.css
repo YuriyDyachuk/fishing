@@ -70997,9 +70997,6 @@ button.button-style1, button.button-style1:active, button.button-style1:focus, b
   background-position: left center;
   background-repeat: no-repeat;
 }
-.auth-link:not(:last-child) {
-  margin-right: 15px;
-}
 .auth-link--login {
   color: var(--color-auth-component);
   font-style: normal;

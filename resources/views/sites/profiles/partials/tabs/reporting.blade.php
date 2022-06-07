@@ -1,4 +1,4 @@
-<div class="active tab-pane" id="activity">
+<div class="tab-pane" id="activity">
     <!-- Post -->
     <div id="loadMoreReportUser"></div>
     <!-- /.post -->

@@ -1,12 +1,6 @@
 @extends('sites.layouts.main')
 
 <style>
-    .smiles{
-        text-align:center;
-    }
-    .smile{
-        cursor:pointer;
-    }
     .tox.tox-silver-sink.tox-tinymce-aux {
         display: none!important;
     }

@@ -8,7 +8,7 @@
             <ul class="nav__list list-reset">
                 <li class="nav__item"><a href="{{ route('main') }}" class="nav__link">Главная</a></li>
                 <li class="nav__item"><a href="{{ route('reporting.index') }}" class="nav__link">Отчеты</a></li>
-                <li class="nav__item"><a href="{{ route('about.us') }}" class="nav__link">О нас</a></li>
+{{--                <li class="nav__item"><a href="{{ route('about.us') }}" class="nav__link">О нас</a></li>--}}
             </ul>
         </nav>
 
@@ -22,7 +22,13 @@
                         <li>
                             <a href="{{ route('customer.profile.show', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Профиль</a>
                         </li>
-                        @if(in_array(auth()->user()->role, [1,2]) && !auth()->user()->isAdminBanned())
+                        <li>
+                            <a href="{{ route('customer.profile.subscribers', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
+                        </li>
+                        @if(in_array(auth()->user()->role, \App\Enums\RoleEnum::getRole()) && !auth()->user()->isAdminBanned())
                             <li>
                                 <a href="{{ route('admin.index') }}" class="header-auth__link--drop auth-link auth-link--register">Админ панель</a>
                             </li>
@@ -34,7 +40,7 @@
                     </ul>
                 </div>
             @else
-                <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login">Логин</a>
+                <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login mr-3">Логин</a>
                 <a href="{{ route('preview') }}" class="header-auth__link auth-link auth-link--register">Регистрация</a>
             @endauth
         </div>
@@ -73,6 +79,12 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="text-align: center;">
                         <li>
                             <a href="{{ route('customer.profile.show', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register p-1">Профиль</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.profile.subscribers', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
+                        </li>
+                        <li>
+                            <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
                         </li>
                         @if(in_array(auth()->user()->role, [1,2]) && !auth()->user()->isAdminBanned())
                             <li>

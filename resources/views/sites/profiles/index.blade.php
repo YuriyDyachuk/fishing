@@ -19,8 +19,8 @@
                                    <div class="card">
                                        <div class="card-header p-2">
                                            <ul class="nav nav-pills" id="item-nav">
-                                               <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Отчеты</a></li>
-                                               <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Подписчики</a></li>
+                                               <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Подписчики</a></li>
+                                               <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Отчеты</a></li>
                                                @if(auth()->id() === (int) request()->route('id'))
                                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Параметры</a></li>
                                                @endif
@@ -28,8 +28,8 @@
                                        </div><!-- /.card-header -->
                                        <div class="card-body p-1">
                                            <div class="tab-content">
-                                               @include('sites.profiles.partials.tabs.reporting')
                                                @include('sites.profiles.partials.tabs.contacts')
+                                               @include('sites.profiles.partials.tabs.reporting')
                                                @include('sites.profiles.partials.tabs.info')
                                            </div>
                                        </div><!-- /.card-body -->
@@ -191,9 +191,8 @@
                                     <input type="checkbox"
                                            name="ban"
                                            class="custom-control-input banned"
-                                           id="customSwitch1"
-                                           @if(1) checked @endif />
-                                    <label class="custom-control-label" for="customSwitch1"> @if(1) Ban @else Unban @endif</label>
+                                           id="customSwitch1"/>
+                                    <label class="custom-control-label" for="customSwitch1"></label>
                                 </div>
                                 <a href="${urlPost}" class="btn btn-sm btn-primary">
                                    <i class="fas fa-user"></i> View Profile
@@ -208,19 +207,20 @@
         checkboxes.forEach(function(checkbox, i) {
 
             checkbox.onchange = function() {
-
                 $.ajax({
-                    url: '{{ route('customer.subscription.ban', $user->id) }}',
-                    type: 'POST',
+                    url: '{{ route('customer.subscription.ban',$user->id) }}',
+                    type: 'PATCH',
                     data: {
-                        settings: this.name,
-                        id: this.value,
-                        checked: this.checked ? 1:0
+                        _token: '{{csrf_token()}}',
+                        id: {{auth()->id()}},
+                        followId: this.value,
+                        checked: this.checked ? 1 : 0
                     },
                     beforeSend: function() { checkbox.disabled = true; },
                     complete: function() { checkbox.disabled = false; },
-                    success: function(response) {
-
+                    success: function(response) {},
+                    errorCaptured(err, vm, info) {
+                        console.error(err, info)
                     }
                 });
             }
