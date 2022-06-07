@@ -88,6 +88,7 @@
     <script type="text/javascript" src="{{ asset('js/register_login.js') }}"></script>
     <script>
         $('div.alert.alert-success').delay(2000).slideUp(300)
+        $('div.alert.alert-danger').delay(3000).slideUp(300)
     </script>
 </div>
 </body>
