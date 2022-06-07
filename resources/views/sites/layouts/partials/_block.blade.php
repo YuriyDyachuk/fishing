@@ -11,30 +11,32 @@
             <div class="description">
                 <p class="fw-bold mb-1">{{ $report->name }}</p>
                 <p class="card-text">
-                    {{ mb_strimwidth($report->description, 0, 150, '...') }}
+                    {{ (mb_strimwidth(strip_tags($report->description), 0, 150, '...')) }}
                 </p>
                 <small class="fw-bold mb-1">Опубликован: {{ $report->customDate }}</small>
             </div>
 
             <div class="info-author-comment d-flex card-comment-main">
-                <div class="col">
-                    <span class="badge rounded-pill badge-primary">Author</span>
-                    <ul class="list-group list-group-light">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
-                                     style="width: 80px; height: 80px"
-                                     class="rounded-circle" />
-                                <div class="ms-3">
-                                    <a href="{{ route('customer.profile.show', $report->user->id) }}">
-                                        <p class="fw-bold mb-1">{{ $report->user->name }}</p>
-                                    </a>
-                                    <small class="fw-hold mb-1"> г. {{ $report->user->city }}</small>
+                @if($report->user->role == \App\Enums\RoleEnum::CUSTOMER()->value)
+                    <div class="col">
+                        <span class="badge rounded-pill badge-primary">Author</span>
+                        <ul class="list-group list-group-light">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
+                                         style="width: 50px; height: 50px"
+                                         class="rounded-circle" />
+                                    <div class="ms-3">
+                                        <a href="{{ route('customer.profile.show', $report->user->id) }}">
+                                            <p class="fw-bold mb-1">{{ $report->user->name }}</p>
+                                        </a>
+                                        <small class="fw-hold mb-1"> г. {{ $report->user->city }}</small>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
 
                 @if($report->comments->count())
                     <div class="col">
@@ -46,7 +48,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
-                                             style="width: 80px; height: 80px"
+                                             style="width: 50px; height: 50px"
                                              class="rounded-circle" />
                                         <div class="ms-3">
                                             <a href="{{ route('customer.profile.show', $comment->user->id) }}">

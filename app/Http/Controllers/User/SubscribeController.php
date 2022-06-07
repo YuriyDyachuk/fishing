@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Models\Follow;
 use App\Models\User;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,8 +39,6 @@ class SubscribeController extends Controller
     public function ban(Request $request)
     {
         if ($request->ajax()) {
-            dd($request->all());
-
             Follow::query()
                 ->where([
                     'follower_id' => $request->user()->id,
@@ -48,18 +46,6 @@ class SubscribeController extends Controller
                 ])
                 ->update(['banned' => true]);
         }
-
-        return redirect()->back()->with(['success' => 'Success'])->withInput();
-    }
-
-    public function unban(Request $request)
-    {
-        Follow::query()
-            ->where([
-                'follower_id' => $request->user()->id,
-                'follow_id' => (int) $request->input('friendId')
-            ])
-            ->update(['banned' => false]);
 
         return redirect()->back()->with(['success' => 'Success'])->withInput();
     }

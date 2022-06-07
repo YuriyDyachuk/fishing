@@ -6,7 +6,7 @@
             <div class="image">
                 <img src="@if(auth()->user()->media('media')->exists()) {{ auth()->user()->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
                      class="img-circle elevation-2"
-                     style="width: 80px;height: 80px;"
+                     style="width: 45px;height: 45px;"
                      alt="User Image">
             </div>
             <div class="info">
@@ -43,12 +43,14 @@
                                 <p>Все</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.users.moderat') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Админы/Модераторы</p>
-                            </a>
-                        </li>
+                       @if(auth()->user()->isAdmin())
+                            <li class="nav-item">
+                                <a href="{{ route('admin.users.moderat') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Админы/Модераторы</p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
                 <li class="nav-item">

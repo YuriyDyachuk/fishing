@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserLoginRequest extends FormRequest
 {
@@ -26,17 +28,8 @@ class UserLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', Rule::exists('users', 'email')],
             'password' => ['required', 'string']
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'email.required' => 'Поле обязательно к заполнению!',
-            'email.email' => 'Поле email обязано содержать символ @!',
-            'password.required' => 'Поле обязательно к заполнению!'
         ];
     }
 }

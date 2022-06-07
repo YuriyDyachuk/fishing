@@ -15,6 +15,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Report extends Model implements HasMedia
 {
+    const LIMIT_COUNT = 10;
+
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
@@ -70,10 +72,10 @@ class Report extends Model implements HasMedia
                     ->height(MediaEnum::height()->value)
                     ->watermark(public_path('watermark_fix.png'))
                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                    ->watermarkWidth(50)
-                    ->watermarkHeight(50)
+                    ->watermarkWidth(45)
+                    ->watermarkHeight(45)
                     ->watermarkPadding(10,10)
-                    ->watermarkOpacity(80);
+                    ->watermarkOpacity(90);
             });
     }
 }

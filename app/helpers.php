@@ -21,4 +21,3 @@ if (!function_exists('generateStringDate')) {
         return explode(',', $response);
     }
 }
-

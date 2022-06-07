@@ -26,10 +26,17 @@ class PasswordResetController extends Controller
     public function passwordReset(Request $request): RedirectResponse
     {
         if (!$this->userService->existsByEmail($request->input('email'))) {
-            return redirect()->back()->withErrors(['error' => 'Email указан неверно. Попробуйте еще раз!']);
+            return redirect()->back()->with(['error' => 'Почта указана неверно. Попробуйте еще раз!'])->withInput();
         }
+
+        $user = $this->userService->getByEmail($request->input('email'));
+
+        if (!\Hash::check($request->input('password'), $user->password)) {
+            return redirect()->back()->with(['error' => 'Пароль указан неверно. Попробуйте еще раз!'])->withInput();
+        }
+
         $this->userService->resetPassword($request->input('email'), bcrypt($request->input('password')));
 
-        return redirect()->route('login')->withInput(['success' => 'Пароль успешно изменен.']);
+        return redirect()->route('login')->with(['success' => 'Пароль успешно изменен.'])->withInput();
     }
 }

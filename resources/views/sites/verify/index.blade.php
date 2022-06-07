@@ -16,21 +16,18 @@
 
     <section>
         <div class="container-fluid content-part" id="modal_page">
-            @include('_include.errors')
             <a href="{{ route('main') }}" class="content__display--close">&times;</a>
             <div class="content-part__text">
                 <div class="text-trench">Step 2/2</div>
                 <h1>Подтвердите аккаунт одним из способов</h1>
                 <p>Выбирайте то что доступно</p>
             </div>
-            <div class="content-part__form">
-                <div class="sm:w-col-6 md:w-col-3 flex flex-col">
-                    <div class="content-part__form__gmail">
-                        <a class="btn btn-primary" style="background-color: #dd4b39;" href="{{ route('new.customer.verifyEmail') }}" role="button">
-                            <i class="fab fa-google"></i>
-                            <span>GMAIL</span>
-                        </a>
-                    </div>
+            <div class="content-part__form modal-prev-form">
+                <div class="content-part__form__gmail">
+                    <a class="btn btn-primary" style="background-color: #dd4b39;" href="{{ route('new.customer.verifyEmail') }}" role="button">
+                        <i class="fab fa-google"></i>
+                        <span>GMAIL</span>
+                    </a>
                 </div>
             </div>
         </div>

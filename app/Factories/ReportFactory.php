@@ -17,7 +17,7 @@ class ReportFactory
             'publish' => $request->has('status') ? 1 : 0,
             'lat' => trim($request->input('lat')),
             'lng' => trim($request->input('lng')),
-            'description' => trim($request->input('description'))
+            'description' => trim(strip_tags($request->input('description')))
         ]);
     }
 }

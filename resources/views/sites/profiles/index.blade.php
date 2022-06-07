@@ -12,97 +12,7 @@
                        <div class="col-md-12 p-1">
                            <div class="row">
                                <div class="col-md-3 p-1">
-
-                                   <!-- Profile Image -->
-                                   <div class="card card-primary card-outline">
-                                       <div class="card-body box-profile">
-                                           <div class="text-center">
-                                               <img class="profile-user-img img-fluid img-circle"
-                                                    src="@if($user->media('media')->exists()) {{ $user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
-                                                    alt="User profile picture"
-                                               style="width: 80px;height: 80px; border: none;">
-                                           </div>
-
-                                           <h3 class="profile-username text-center">{{ $user->name }}</h3>
-
-                                           <p class="text-muted text-center">г. {{ $user->city }}</p>
-
-                                           <ul class="list-group list-group-unbordered mb-3">
-                                               <li class="list-group-item">
-                                                   <b>Reports</b> <a class="float-right">{{ $user->reports()->count()}}</a>
-                                               </li>
-                                               <li class="list-group-item">
-                                                   <b>Friends</b> <a class="float-right">{{ $user->isConfirmFollowersCount() }}</a>
-                                               </li>
-                                           </ul>
-
-                                           @if(auth()->user()->id !== (int) request()->route('id'))
-                                               @if(auth()->user()->isActiveSendFollowing($user->id))
-                                                   <a class="btn btn-success"
-                                                      id="subscription"
-                                                      role="button">Запрос отправлен
-                                                   </a>
-                                               @else
-                                                   <a class="btn btn-success @if(auth()->user()->isActiveSendFollowing($user->id))  @else d-none @endif"
-                                                      id="subscription"
-                                                      href="{{ route('customer.subscription.contact', $user->id) }}"
-                                                      role="button">
-                                                       @if(auth()->user()->isActiveSendFollowing($user->id))
-                                                           Подтвердить подписку
-                                                       @endif Активный подписчик</a>
-                                               @endif
-                                           @endif
-                                           @if(auth()->user()->id === (int) request()->route('id'))
-                                               <a class="btn btn-success btn-block"
-                                                  href="{{ route('reporting.create') }}"
-                                                  role="button">Добавить отчет</a>
-                                           @endif
-                                       </div>
-                                       <!-- /.card-body -->
-                                   </div>
-                                   <!-- /.card -->
-
-                                   <!-- About Me Box -->
-                                   <div class="card card-primary">
-                                       <div class="card-header">
-                                           <h3 class="card-title">About Me</h3>
-                                       </div>
-                                       <!-- /.card-header -->
-                                       <div class="card-body">
-                                           @if(!is_null($user->birthday))
-                                               <strong><i class="fas fa-user-clock mr-1"></i> Возраст</strong>
-
-                                               <p class="text-muted">
-                                                   {{ $user->age() }}
-                                               </p>
-
-                                               <hr>
-                                           @endif
-
-                                           <strong><i class="fas fa-pencil-alt mr-1"></i> Обо мне</strong>
-
-                                           <p class="text-muted">
-                                               {{ $user->bio }}
-                                           </p>
-
-                                           <hr>
-
-                                           <strong><i class="fas fa-map-marker-alt mr-1"></i> Город</strong>
-
-                                           <p class="text-muted">{{ $user->city }}</p>
-
-                                           <hr>
-
-                                           <strong><i class="fas fa-list-ol mr-1"></i> Интересы</strong>
-
-                                           <p class="text-muted">
-                                               <span class="tag tag-info">🎣</span>
-                                           </p>
-
-                                       </div>
-                                       <!-- /.card-body -->
-                                   </div>
-                                   <!-- /.card -->
+                                   @include('sites.profiles.partials.about')
                                </div>
                                <!-- /.col -->
                                <div class="col-md-9 p-1">
@@ -118,165 +28,10 @@
                                        </div><!-- /.card-header -->
                                        <div class="card-body p-1">
                                            <div class="tab-content">
-                                               <!-- /.profile-panel -->
-                                               <div class="active tab-pane" id="activity">
-                                                    <!-- Post -->
-                                                   <div id="loadMoreReportUser"></div>
-                                                    <!-- /.post -->
-                                                   <div class="col-auto text-center loader__btn mt-5" id="loadMoreProfile">
-                                                       <input type="hidden" id="page" value="0">
-                                                       <button id="btn1" class="trigger btn" onclick="ajaxLoader()" style="opacity: 1;">Загрузить</button>
-                                                   </div>
-                                               </div>
-
-                                               <!-- /.profile-panel -->
-                                               <div class="tab-pane" id="timeline">
-                                                   <!-- /.card-header -->
-                                                   <div class="card-body p-1">
-                                                       <div class="tab-pane" id="subscriber">
-                                                           <div class="card-body p-1 pb-0">
-                                                               <div class="row">
-                                                                   <!-- Followers -->
-                                                                   <div id="loadMoreFollowerUser" class="p-1"></div>
-                                                                   <!-- /.followers -->
-                                                                   <div class="col-12 col-auto text-center loader__btn mt-5" id="loadMoreProfile">
-                                                                       <input type="hidden" id="pageFollow" value="0">
-                                                                       <button id="btn2" class="trigger btn" onclick="ajaxLoaderFollower()" style="opacity: 1;">Загрузить</button>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <!-- /.card-body -->
-                                                       </div>
-                                                   </div>
-                                                   <!-- /.card-body -->
-
-                                               </div>
-                                               <!-- /.friend-pane -->
-
-                                               @if(auth()->id() === (int) request()->route('id'))
-                                                    <div class="tab-pane" id="settings">
-                                                   <h3>Заменить аватар</h3>
-                                                   <form action="{{ route('customer.profile.media', $user->id) }}"
-                                                         class="mb-4"
-                                                         method="POST"
-                                                         enctype="multipart/form-data">
-                                                       @csrf
-                                                       <input type="file" name="media" id="file" class="input-file" />
-                                                       <button id="ava" type="submit" class="btn btn-warning float-right">Изменить</button>
-                                                   </form>
-                                                   <h3>Основная информация</h3>
-                                                   <form action="{{ route('customer.profile.update', $user->id) }}" method="POST">
-                                                       @csrf
-                                                       @method('PATCH')
-                                                       <div class="row">
-                                                           <div class="col-6">
-                                                               <div class="form-group">
-                                                                   <label for="inputName">Имя</label>
-                                                                   <input type="text" name="name" value="{{ $user->name }}" id="inputName" class="form-control">
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-6">
-                                                               <div class="form-group">
-                                                                   <label for="inputEmail">Email</label>
-                                                                   <input type="email" name="email" id="inputEmail" value="{{ $user->email }}" class="form-control">
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="row">
-                                                           <div class="col-6">
-                                                               <div class="form-group">
-                                                                   <label for="inputPhone">Телефон</label>
-                                                                   <input type="text" name="phone" value="{{ $user->phone }}" id="inputPhone" class="form-control">
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-6">
-                                                               @if(empty($user->birthday))
-                                                                   <div class="form-group">
-                                                                       <label for="inputDate">Дата рождения</label>
-                                                                       <input type="date" name="birthday"
-                                                                              id="inputDate"
-                                                                              value="{{ $user->birthday }}"
-                                                                              max="9999-12-31T23:59"
-                                                                              class="form-control">
-                                                                   </div>
-                                                               @endif
-                                                           </div>
-                                                       </div>
-
-
-                                                       <div class="row">
-                                                           <div class="col-6">
-                                                               <label for="inputStatus">Пол</label>
-                                                               <select class="form-control"
-                                                                       name="gender"
-                                                                       id="inputGender">
-                                                                   <option>Выбрать значение</option>
-                                                                   <option value="1" @if($user->gender === 1) selected @endif>Муж</option>
-                                                                   <option value="2" @if($user->gender === 2) selected @endif>Жен</option>
-                                                               </select>
-                                                           </div>
-
-                                                           <div class="col">
-                                                               <div class="form-group">
-                                                                   <label>Адрес</label>
-                                                                   <input
-                                                                           class="form-control"
-                                                                           id="ship-address"
-                                                                           autocomplete="off"
-                                                                           value="{{ $user->city }}"
-                                                                   />
-                                                               </div>
-                                                           </div>
-                                                           <input type="hidden" name="route" id="route">
-                                                           <input type="hidden" name="street_number" id="street_number">
-                                                           <input type="hidden" name="city" id="locality">
-                                                           <input type="hidden" name="country" id="country">
-                                                           <input type="hidden" name="states" id="administrative_area_level_1">
-                                                       </div>
-
-                                                       <div class="row">
-                                                           <div class="col">
-                                                               <div class="form-group">
-                                                                   <label for="inputBio">Описание</label>
-                                                                   <textarea name="bio" id="inputBio" class="form-control" rows="5">{{ $user->bio }}</textarea>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-
-                                                       <div class="row">
-                                                           <div class="col-6">
-                                                               <!-- Name input -->
-                                                               <div class="form-outline">
-                                                                   <input type="password" class="form-control" id="password" name="password">
-                                                                   <label class="form-label" for="form8Example4">Новый пароль</label>
-                                                                   <div class="input-group-append">
-                                                                       <button class="btn btn-secondary" type="button" onclick="showPassword()">Показать</button>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="col-6 mb-3 mt-3">
-                                                               <!-- Email input -->
-                                                               <div class="form-outline">
-                                                                   <input type="password" name="password_confirmation" id="password_confirm" class="form-control" />
-                                                                   <label class="form-label" for="form8Example5">Подтверждение пароля</label>
-                                                                   <div class="input-group-append">
-                                                                       <button class="btn btn-secondary" type="button" onclick="showPasswordConfirm()">Показать</button>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-
-                                                       <div class="form-group row">
-                                                           <div class="offset-sm-2 col-sm-10">
-                                                               <button type="submit" class="btn btn-warning float-right">Сохранить</button>
-                                                           </div>
-                                                       </div>
-                                                   </form>
-                                               </div>
-                                               @endif
-                                               <!-- /.tab-pane -->
+                                               @include('sites.profiles.partials.tabs.reporting')
+                                               @include('sites.profiles.partials.tabs.contacts')
+                                               @include('sites.profiles.partials.tabs.info')
                                            </div>
-                                           <!-- /.tab-content -->
                                        </div><!-- /.card-body -->
                                    </div>
                                    <!-- /.card -->
@@ -304,9 +59,11 @@
             defer></script>
 
     <script type="text/javascript" src="{{ asset('js/place_input.js') }}"></script>
-    <script src="{{ asset('js/show_pass.js') }}"></script>
 
     <script>
+
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+        $('div.alert.alert-danger').delay(3000).slideUp(300)
 
         $('#subscription').on('click', function(el) {
             el.preventDefault();
@@ -321,7 +78,6 @@
                 }
             });
         });
-
 
         function ajaxLoader() {
             let pageNext = document.getElementById('page').value;
@@ -425,7 +181,7 @@
                                    </ul>
                                </div>
                                <div class="col-5 text-center">
-                                   <img src="${el['avatar']}" alt="user-avatar" class="img-circle img-fluid">
+                                   <img src="${el['avatar']}" style="width: 50px; height: 50px" alt="user-avatar" class="img-circle img-fluid">
                                </div>
                            </div>
                        </div>
@@ -447,8 +203,6 @@
                    </div>
                </div>`
         }
-
-
 
         checkboxes = Array.from(document.querySelectorAll('.banned'));
         checkboxes.forEach(function(checkbox, i) {

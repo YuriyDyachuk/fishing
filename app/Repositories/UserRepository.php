@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\DataTransObject\UserDTO;
 use App\Models\User;
 use App\Contract\UserInterface;
-use App\DataTransObject\UserDTO;
+use App\DataTransObject\AuthDTO;
 
 class UserRepository extends AbstractRepository implements UserInterface
 {
@@ -15,7 +16,7 @@ class UserRepository extends AbstractRepository implements UserInterface
         return User::class;
     }
 
-    public function create(UserDTO $DTO): User
+    public function create(AuthDTO $DTO): User
     {
         return $this->query()
                     ->create($DTO->toArray())
@@ -32,11 +33,11 @@ class UserRepository extends AbstractRepository implements UserInterface
         return $this->query()->where('email', $email)->first();
     }
 
-    public function update(int $id, UserDTO $DTO): void
+    public function update(int $id, UserDTO $userDTO): void
     {
         $this->query()
-             ->where('id', $id)
-             ->update($DTO->toArray());
+            ->where('id', $id)
+            ->update($userDTO->toArray());
     }
 
     public function existsById(int $id): bool

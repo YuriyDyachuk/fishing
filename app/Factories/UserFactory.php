@@ -19,7 +19,6 @@ class UserFactory
             'name' => trim($request->input('name')),
             'email' => trim($request->input('email')),
             'phone' => trim($request->input('phone')),
-            'password' => bcrypt($request->input('password')),
             'birthday' => !is_null($request->input('birthday')) ? Carbon::parse($request->input('birthday')) : auth()->user()->birthday
         ]);
     }

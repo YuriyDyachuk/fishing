@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Bots\Telegram;
 use App\Mail\VerifyEmailMail;
+use App\DataTransObject\AuthDTO;
 use App\DataTransObject\UserDTO;
 use Illuminate\Http\UploadedFile;
 use App\Repositories\UserRepository;
@@ -30,7 +31,7 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function create(UserDTO $DTO): void
+    public function create(AuthDTO $DTO): void
     {
         $this->userRepository->create($DTO);
     }
@@ -47,9 +48,14 @@ class UserService
         $this->sendEmail($user);
     }
 
-    public function update(int $id, UserDTO $DTO)
+    public function getByEmail(string $email): User
     {
-        $this->userRepository->update($id, $DTO);
+        return $this->userRepository->getByEmail($email);
+    }
+
+    public function update(int $id, UserDTO $userDTO)
+    {
+        $this->userRepository->update($id, $userDTO);
     }
 
     public function resetPassword(string $email, string $pass): void

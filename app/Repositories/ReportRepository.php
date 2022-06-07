@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\DataTransObject\ReportSearchDTO;
+use Carbon\Carbon;
 use App\Models\Report;
 use App\Contract\ReportInterface;
 use App\DataTransObject\ReportDTO;
-use Carbon\Carbon;
+use App\DataTransObject\ReportSearchDTO;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -52,9 +52,9 @@ class ReportRepository extends AbstractRepository implements ReportInterface
     {
         return $this->query()
                     ->with(['user','comments'])
-                    ->where('created_at','>=', Carbon::now()->startOfWeek())
-                    ->latest('created_at')
-                    ->limit(10)
+                    ->where('publish',true)
+                    ->orderByDesc('created_at')
+                    ->limit(Report::LIMIT_COUNT)
                     ->get();
     }
 

@@ -11,7 +11,7 @@
                             <img src="{{ $report->getFirstMediaUrl('gallery', 'small') }}" class="card-img-top" alt="Skyscrapers"/>
                         </a>
                         <div class="card-body">
-                            <p class="card-text">{{ mb_strimwidth($report->description, 0, 200, '...') }}</p>
+                            <p class="card-text">{{ mb_strimwidth(strip_tags($report->description), 0, 200, '...') }}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-around">
                             <small class="text-muted">Автор:
@@ -33,6 +33,9 @@
 
 @push('scripts')
     <script>
+
+        $('div.alert.alert-success').delay(1000).slideUp(300)
+
         function ajaxLoader() {
             let pageNext = document.getElementById('page').value;
             let page = Number(pageNext) + 1;

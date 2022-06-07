@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\DataTransObject\ReportSearchDTO;
 use App\Models\Report;
 use App\DataTransObject\ReportDTO;
 use App\Repositories\ReportRepository;
+use App\DataTransObject\ReportSearchDTO;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 

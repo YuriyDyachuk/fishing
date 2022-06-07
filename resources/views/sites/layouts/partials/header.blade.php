@@ -34,8 +34,8 @@
                     </ul>
                 </div>
             @else
-                <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login">Sign In</a>
-                <a href="{{ route('preview') }}" class="header-auth__link auth-link auth-link--register">Register</a>
+                <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login">Логин</a>
+                <a href="{{ route('preview') }}" class="header-auth__link auth-link auth-link--register">Регистрация</a>
             @endauth
         </div>
     </div>
@@ -88,11 +88,11 @@
             @else
                 <li class="d-flex justify-content-center mt-2 flex-column">
                     <i class="fa fa-sign-in mr-2"></i>
-                    <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login mt-1">Sign In</a>
+                    <a href="{{ route('login') }}" class="header-auth__link auth-link auth-link--login mt-1">Логин</a>
                 </li>
                 <li class="d-flex justify-content-center mt-2 flex-column">
                     <i class="fa fa-registered mr-2"></i>
-                    <a href="{{ route('preview') }}" class="header-auth__link auth-link auth-link--register">Register</a>
+                    <a href="{{ route('preview') }}" class="header-auth__link auth-link auth-link--register">Регистрация</a>
                 </li>
             @endauth
         </ul>

@@ -52,6 +52,7 @@
                                     <textarea class="form-control"
                                               rows="10"
                                               name="description"
+                                              id="mytextarea"
                                               placeholder="Enter ...">{{ old('description') }}</textarea>
                                 </div>
 
@@ -87,6 +88,22 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/blsc8eepr9dcc6wd38p9f2s4aongqmhggoh2x2o2fkh6uu5y/tinymce/6/tinymce.min.js"></script>
+
+    <script>
+        $("#mytextarea").tinymce({
+            selector: "#mytextarea",
+            plugins: "emoticons autoresize",
+            toolbar: "emoticons",
+            toolbar_location: "bottom",
+            menubar: false,
+            statusbar: false
+        })
+    </script>
 @endsection
 
 @push('scripts')

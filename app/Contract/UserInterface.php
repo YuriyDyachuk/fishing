@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\Contract;
 
 use App\Models\User;
+use App\DataTransObject\AuthDTO;
 use App\DataTransObject\UserDTO;
 
 interface UserInterface
 {
-    public function create(UserDTO $DTO): User;
+    public function create(AuthDTO $DTO): User;
 
     public function getById(int $id): ?User;
 
     public function getByEmail(string $email): ?User;
 
-    public function update(int $id, UserDTO $DTO): void;
+    public function update(int $id, UserDTO $userDTO): void;
 
     public function existsById(int $id): bool;
 

@@ -1,5 +1,14 @@
 @extends('sites.layouts.main')
 
+<style>
+    .smiles{
+        text-align:center;
+    }
+    .smile{
+        cursor:pointer;
+    }
+</style>
+
 @section('content')
 
     @include('_include.errors')
@@ -48,13 +57,7 @@
 
                                             <!-- Message input -->
                                             <div class="form-outline mb-4">
-                                                <textarea class="form-control" name="description" id="form6Example7" rows="15">{{ old('description') }}</textarea>
-                                                <label class="form-label" for="form6Example7" style="margin-left: 0px;">Подробное описание</label>
-                                                <div class="form-notch">
-                                                    <div class="form-notch-leading" style="width: 9px;"></div>
-                                                    <div class="form-notch-middle" style="width: 135.2px;"></div>
-                                                    <div class="form-notch-trailing"></div>
-                                                </div>
+                                                <textarea class="form-control" name="description" id="mytextarea"></textarea>
                                             </div>
 
                                             <hr />
@@ -104,6 +107,22 @@
 
     </div>
     <!-- nav-bar menu -->
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/blsc8eepr9dcc6wd38p9f2s4aongqmhggoh2x2o2fkh6uu5y/tinymce/6/tinymce.min.js"></script>
+
+    <script>
+            $("#mytextarea").tinymce({
+                selector: "#mytextarea",
+                plugins: "emoticons autoresize",
+                toolbar: "emoticons",
+                toolbar_location: "bottom",
+                menubar: false,
+                statusbar: false
+            })
+    </script>
 @endsection
 
 @push('scripts')
@@ -115,4 +134,8 @@
 
     <script type="text/javascript" src="{{ asset('js/google-map_new-report.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/report-media.js') }}"></script>
+
+    <script>
+        $('div.alert.alert-danger').delay(3000).slideUp(300)
+    </script>
 @endpush

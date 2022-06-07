@@ -127,6 +127,10 @@
 
     @stack('scripts')
 
+    <script>
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+    </script>
+
 </div>
 </body>
 </html>

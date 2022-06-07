@@ -30,12 +30,10 @@ class UserChangeRequest extends FormRequest
             'name' => ['required', 'string', 'min:5'],
             'phone' => ['required', 'string'],
             'email' => ['required', 'email', Rule::unique('users','id')->ignore((int) $this->id)],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
-            'password_confirmation' => ['nullable', 'min:6'],
             'gender' => ['string'],
             'bio' => ['nullable', 'string', 'max:500'],
             'birthday' => ['nullable', 'string'],
-            'сшен' => ['nullable', 'string']
+            'city' => ['nullable', 'string']
         ];
     }
 }

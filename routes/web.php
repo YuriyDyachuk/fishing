@@ -97,7 +97,6 @@ Route::middleware('auth')->group(function () {
             Route::post('subscription', [SubscribeController::class, 'store'])->name('customer.subscription.contact');
             Route::post('unsubscribe', [SubscribeController::class, 'destroy'])->name('customer.unsubscribe.contact');
             Route::post('ban', [SubscribeController::class, 'ban'])->name('customer.subscription.ban');
-            Route::post('unban', [SubscribeController::class, 'unban'])->name('customer.subscription.unban');
 
             Route::middleware('user.id')->group(function () {
                 Route::patch('', [ProfileController::class, 'update'])->name('customer.profile.update');
@@ -141,7 +140,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::prefix('users')->group(function () {
             Route::get('', [UserController::class, 'index'])->name('admin.users.index');
-            Route::get('moderat', [UserController::class, 'moderation'])->name('admin.users.moderat');
+            Route::get('moderat', [UserController::class, 'moderation'])->name('admin.users.moderat')->middleware('admin.custom');
             Route::get('create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('', [UserController::class, 'store'])->name('admin.users.store');
             Route::prefix('{id}')->group(function () {
@@ -153,10 +152,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
                  *
                  * Ban user [ Moderation and Customer ]
                  */
-                Route::post('moderation', [BannedUserController::class, 'update'])->name('admin.users.moderation');
             });
 
-            Route::get('banned', [BannedUserController::class, 'index'])->name('admin.users.banned');
         });
     });
 });
