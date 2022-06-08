@@ -1,9 +1,9 @@
 @extends('sites.layouts.main')
 @section('content')
 
-    @include('_include.errors')
     <div class="content-box profile-page dashboard-content" id="dashboard">
 
+        @include('_include.errors')
         <div class="content-box analytics-page">
             <div class="tab-content">
                 <div class="tab-content" id="pills-tabContent">
