@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-12">
                     <div class="card-body">
-                        <img class="img-fluid pad" src="{{ $report->getFirstMediaUrl('gallery') }}" alt="Photo">
+                        <img class="img-fluid pad" src="{{ $report->getFirstMediaUrl('gallery', 'thumb') }}" alt="Photo">
                         &nbsp;
                         <div class="post clearfix mt-3">
                             <div class="user-block">
@@ -46,7 +46,7 @@
                                         @foreach($report->getMedia('gallery') as $key => $media)
                                             <div class="col-sm-3">
                                                 <img class="img-fluid mb-3"
-                                                     src="{{ $media->getUrl('small') }}"
+                                                     src="{{ $media->getUrl('thumb') }}"
                                                      style="height: 74%!important"
                                                      alt="Photo">
                                             </div>
