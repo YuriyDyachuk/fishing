@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\UserMediaRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class MediaProfileController extends Controller
      * @throws FileDoesNotExist
      * @throws FileIsTooBig
      */
-    public function store(Request $request, int $id): RedirectResponse
+    public function store(UserMediaRequest $request, int $id): RedirectResponse
     {
         if ($request->file('media')) {
             $this->userService->storeMedia($this->userService->findById($id), $request->file('media'));
