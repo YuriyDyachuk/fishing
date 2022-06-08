@@ -63,11 +63,6 @@ class User extends Authenticatable implements HasMedia
 
     ############################## [RELATION METHOD] ##############################
 
-    public function viberVerify(): HasOne
-    {
-        return $this->hasOne(ViberCodeVerify::class);
-    }
-
     public function emailTokenVerify(): HasOne
     {
         return $this->hasOne(EmailTokenVerify::class);

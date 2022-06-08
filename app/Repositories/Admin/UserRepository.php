@@ -58,7 +58,7 @@ class UserRepository extends AbstractRepository implements UserInterface
                     ->whereIn('role', RoleEnum::getRole())
                     ->get()
                     ->filter(function ($user) {
-                        return $user->id !== auth()->id();
+                        return $user->id !== request()->user()->id;
                     });
     }
 

@@ -17,26 +17,24 @@
             </div>
 
             <div class="info-author-comment d-flex card-comment-main">
-                @if($report->user->role == \App\Enums\RoleEnum::CUSTOMER()->value)
-                    <div class="col">
-                        <span class="badge rounded-pill badge-primary">Author</span>
-                        <ul class="list-group list-group-light">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
+                <div class="col">
+                    <span class="badge rounded-pill badge-primary">Author</span>
+                    <ul class="list-group list-group-light">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <a href="{{ route('customer.profile.show', $report->user->id) }}">
                                     <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
                                          style="width: 50px; height: 50px"
                                          class="rounded-circle" />
-                                    <div class="ms-3">
-                                        <a href="{{ route('customer.profile.show', $report->user->id) }}">
-                                            <p class="fw-bold mb-1">{{ $report->user->name }}</p>
-                                        </a>
-                                        <small class="fw-hold mb-1"> г. {{ $report->user->city }}</small>
-                                    </div>
+                                </a>
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ $report->user->name }}</p>
+                                    <small class="fw-hold mb-1"> г. {{ $report->user->city }}</small>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
                 @if($report->comments->count())
                     <div class="col">
@@ -47,13 +45,13 @@
                             <ul class="list-group list-group-light">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
-                                             style="width: 50px; height: 50px"
-                                             class="rounded-circle" />
+                                        <a href="{{ route('customer.profile.show', $comment->user->id) }}">
+                                            <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
+                                                 style="width: 50px; height: 50px"
+                                                 class="rounded-circle" />
+                                        </a>
                                         <div class="ms-3">
-                                            <a href="{{ route('customer.profile.show', $comment->user->id) }}">
-                                                <p class="fw-bold mb-1">{{ $comment->user->name }}</p>
-                                            </a>
+                                            <p class="fw-bold mb-1">{{ $comment->user->name }}</p>
                                             <small class="text-start mb-0">
                                                 {{ mb_strimwidth($comment->body, 0, 30, '...' ) }}
                                             </small>

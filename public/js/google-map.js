@@ -1,4 +1,4 @@
-var default_zoom = 8,
+var default_zoom = 6,
     default_center_lat = 53.894473,
     default_center_lng = 27.561389,
     default_marker_size = 36,
@@ -183,8 +183,10 @@ function generateInfo(el) {
     let url = "http://xn--m1aaxj.xn--90ais/reports/" + el['id'];
 
     return  "<div class='map-box-content'>"+
-        "<p class='bold'> Автор: " + el['user']['name'] + "</p>" +
-        "<p class='bold'> Дата создания: " + date + "</p>" +
+        "<small> Автор:</small>" +
+        "<p class='bold'>" + el['user']['name'] + "</p>" +
+        "<small> Дата создания:</small>" +
+        "<p class='bold'>" + date + "</p>"
         "<p class='bold'>" + "<a class='btn btn-sm btn-warning' href=" + url + ">Просмотр" + "</a>" + "</p>" +
         "</div>";
 }

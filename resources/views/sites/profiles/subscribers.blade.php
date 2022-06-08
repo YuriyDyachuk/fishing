@@ -32,7 +32,7 @@
                         </div>
                     </td>
                     <td>
-                        <form class="mb-1" action="{{ route('customer.profile.subscriber.apply', [auth()->id(), $follower->id]) }}" method="POST">
+                        <form class="mb-1" action="{{ route('customer.profile.subscriber.apply', [request()->user()->id, $follower->id]) }}" method="POST">
                             @csrf
                             @method('PATCH')
                             <button type="submit"
@@ -40,7 +40,7 @@
                                 <i class="fas fa-user-friends"></i> Принять
                             </button>
                         </form>
-                        <form action="{{ route('customer.profile.subscriber.cancel', [auth()->id(), $follower->id]) }}" method="POST">
+                        <form action="{{ route('customer.profile.subscriber.cancel', [request()->user()->id, $follower->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit"

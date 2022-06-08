@@ -19,21 +19,21 @@
                         Личный кабинет
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="text-align: center;">
-                        <li>
-                            <a href="{{ route('customer.profile.show', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Профиль</a>
+                        <li class="pt-1 pb-2">
+                            <a href="{{ route('customer.profile.show', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Профиль</a>
                         </li>
-                        <li>
-                            <a href="{{ route('customer.profile.subscribers', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
+                        <li class="pb-2">
+                            <a href="{{ route('customer.profile.subscribers', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
                         </li>
-                        <li>
+                        <li class="pb-2">
                             <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
                         </li>
-                        @if(in_array(auth()->user()->role, \App\Enums\RoleEnum::getRole()) && !auth()->user()->isAdminBanned())
-                            <li>
+                        @if(in_array(request()->user()->role, \App\Enums\RoleEnum::getRole()) && !request()->user()->isAdminBanned())
+                            <li class="pb-2">
                                 <a href="{{ route('admin.index') }}" class="header-auth__link--drop auth-link auth-link--register">Админ панель</a>
                             </li>
                         @endif
-                        <li>
+                        <li class="pb-0">
                             <a class="log-out-btn header-auth__link--drop auth-link auth-link--register" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Logout </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                         </li>
@@ -65,11 +65,11 @@
                 <a href="{{ route('reporting.index') }}" class="header-auth__link--drop auth-link auth-link--register mt-1">
                     Отчеты</a>
             </li>
-            <li class="d-flex justify-content-center mt-2 flex-column">
-                <i class="fa fa-info-circle mr-2"></i>
-                <a href="{{ route('about.us') }}" class="header-auth__link--drop auth-link auth-link--register mt-1">
-                    О нас</a>
-            </li>
+{{--            <li class="d-flex justify-content-center mt-2 flex-column">--}}
+{{--                <i class="fa fa-info-circle mr-2"></i>--}}
+{{--                <a href="{{ route('about.us') }}" class="header-auth__link--drop auth-link auth-link--register mt-1">--}}
+{{--                    О нас</a>--}}
+{{--            </li>--}}
             @auth
                 <div class="dropdown">
                     <i class="fa fa-house-user mr-2"></i>
@@ -77,21 +77,21 @@
                         Личный кабинет
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="text-align: center;">
-                        <li>
-                            <a href="{{ route('customer.profile.show', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register p-1">Профиль</a>
+                        <li class="pt-1 pb-2">
+                            <a href="{{ route('customer.profile.show', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register p-1">Профиль</a>
                         </li>
-                        <li>
-                            <a href="{{ route('customer.profile.subscribers', auth()->id()) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
+                        <li class="pb-2">
+                            <a href="{{ route('customer.profile.subscribers', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
                         </li>
-                        <li>
+                        <li class="pb-2">
                             <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
                         </li>
-                        @if(in_array(auth()->user()->role, [1,2]) && !auth()->user()->isAdminBanned())
-                            <li>
+                        @if(in_array(request()->user()->role, [1,2]) && !request()->user()->isAdminBanned())
+                            <li class="pb-2">
                                 <a href="{{ route('admin.index') }}" class="header-auth__link--drop auth-link auth-link--register">Админ панель</a>
                             </li>
                         @endif
-                        <li>
+                        <li class="pb-0">
                             <a class="log-out-btn header-auth__link--drop auth-link auth-link--register" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Logout </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                         </li>

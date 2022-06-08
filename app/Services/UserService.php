@@ -101,12 +101,7 @@ class UserService
 
     public function getMyFollowers(): LengthAwarePaginator
     {
-        return auth()->user()->followers()->wherePivot('confirmed', false)->paginate(10);
-    }
-
-    public function getMyFollow()
-    {
-        return auth()->user()->followersConfirm()->paginate(1);
+        return request()->user()->followers()->wherePivot('confirmed', false)->paginate(10);
     }
 
     #================================== [CUSTOM METHODS MEDIA LIBRARY] ==================================#

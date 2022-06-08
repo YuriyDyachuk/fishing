@@ -30,13 +30,13 @@
                                 </li>
                             </ul>
 
-                            @if(auth()->user()->id !== (int) request()->route('id'))
+                            @if(request()->user()->id !== (int) request()->route('id'))
                                 <a href="#"
                                    class="btn btn-primary btn-block">
                                     <b>Отправить запрос</b>
                                 </a>
                             @endif
-                            @if(auth()->user()->id === (int) request()->route('id'))
+                            @if(request()->user()->id === (int) request()->route('id'))
                                 <a class="btn btn-success btn-block"
                                    href="{{ route('reporting.create') }}"
                                    role="button">Добавить отчет</a>

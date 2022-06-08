@@ -19,7 +19,7 @@ class CreateReportsTable extends Migration
             $table->tinyInteger('publish')->default(0);
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
-            $table->tinyInteger('blocking')->default(0)->comment('Блокировка на изменение двумя юзерами');
+            $table->boolean('blocking')->nullable()->comment('Блокировка на изменение двумя юзерами');
             $table->foreignId('user_id')->constrained('users','id')->cascadeOnDelete();
             $table->foreignId('region_id')->constrained('regions','id')->cascadeOnDelete();
             $table->timestamps();

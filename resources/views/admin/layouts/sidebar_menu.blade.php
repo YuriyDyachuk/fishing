@@ -4,13 +4,13 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="@if(auth()->user()->media('media')->exists()) {{ auth()->user()->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                <img src="@if(request()->user()->media('media')->exists()) {{ request()->user()->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
                      class="img-circle elevation-2"
                      style="width: 45px;height: 45px;"
                      alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('customer.profile.show', auth()->id()) }}" class="d-block">{{ auth()->user()->name }}</a>
+                <a href="{{ route('customer.profile.show', request()->user()->id) }}" class="d-block">{{ request()->user()->name }}</a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                                 <p>Все</p>
                             </a>
                         </li>
-                       @if(auth()->user()->isAdmin())
+                       @if(request()->user()->isAdmin())
                             <li class="nav-item">
                                 <a href="{{ route('admin.users.moderat') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>

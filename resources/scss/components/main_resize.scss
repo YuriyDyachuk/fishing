@@ -1,7 +1,7 @@
 @media (max-width: 992px) {
   #content-main {
     .main-img {
-      margin-bottom: 11rem!important
+      text-align: center!important
     }
 
     .info-author-comment {
@@ -17,11 +17,11 @@
 @media (max-width: 792px) {
   #content-main {
     display: block!important;
-    text-align: center!important;
+    text-align: start!important;
     max-width: 95%!important;
 
     .main-img {
-      margin-bottom: 2rem!important
+      text-align: center!important
     }
   }
 }

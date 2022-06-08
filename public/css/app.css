@@ -71267,7 +71267,7 @@ button.button-style1, button.button-style1:active, button.button-style1:focus, b
 }
 @media (max-width: 992px) {
   #content-main .main-img {
-    margin-bottom: 11rem !important;
+    text-align: center !important;
   }
   #content-main .info-author-comment {
     display: block;
@@ -71279,11 +71279,11 @@ button.button-style1, button.button-style1:active, button.button-style1:focus, b
 @media (max-width: 792px) {
   #content-main {
     display: block !important;
-    text-align: center !important;
+    text-align: start !important;
     max-width: 95% !important;
   }
   #content-main .main-img {
-    margin-bottom: 2rem !important;
+    text-align: center !important;
   }
 }
 @media (max-width: 550px) {

@@ -81,7 +81,8 @@ class ReportRepository extends AbstractRepository implements ReportInterface
     {
         return $this->query()
                     ->with(['comments'])
-                    ->where('user_id', $id)
+                    ->where(['user_id' => $id, 'publish' => true])
+                    ->orderByDesc('created_at')
                     ->paginate($this->perPage);
     }
 }

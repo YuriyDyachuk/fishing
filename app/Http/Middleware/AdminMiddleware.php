@@ -9,7 +9,7 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->isAdmin()) {
+        if (\request()->user()->isAdmin()) {
             return $next($request);
         }
 

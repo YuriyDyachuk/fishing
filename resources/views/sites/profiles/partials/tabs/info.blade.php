@@ -1,4 +1,4 @@
-@if(auth()->id() === (int) request()->route('id'))
+@if(request()->user()->id === (int) request()->route('id'))
     <div class="tab-pane" id="settings">
         <h3>Заменить аватар</h3>
         <form action="{{ route('customer.profile.media', $user->id) }}"
@@ -54,8 +54,8 @@
                             name="gender"
                             id="inputGender">
                         <option>Выбрать значение</option>
-                        <option value="1" @if($user->gender === 1) selected @endif>Муж</option>
-                        <option value="2" @if($user->gender === 2) selected @endif>Жен</option>
+                        <option value="1" @if($user->gender === 1) selected @endif>Мужской</option>
+                        <option value="2" @if($user->gender === 2) selected @endif>Женский</option>
                     </select>
                 </div>
 

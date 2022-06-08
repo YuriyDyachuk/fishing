@@ -37,16 +37,4 @@ class ReportRequest extends FormRequest
             'media.video.*'  => ['nullable', 'mimetypes:video/*', 'max:1024000']
         ];
     }
-
-    public function messages(): array
-    {
-        return [
-            'description.required' => 'Поле описание обязательно к заполнению!',
-            'lat.required' => 'Поле локация обязательно к заполнению!',
-            'media.gallery.max' => 'Выберите фото в количестве 20 штук.',
-            'media.gallery.*.size' => 'Выберите фото размером до 20MB!',
-            'media.video.max'  => 'Выберите видео в количестве 3 штук.',
-            'media.video.*.size'  => 'Выберите видео размеров до 1GB!'
-        ];
-    }
 }

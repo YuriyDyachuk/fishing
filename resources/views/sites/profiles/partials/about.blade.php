@@ -21,30 +21,29 @@
             </li>
         </ul>
 
-        @if(auth()->user()->id !== (int) request()->route('id'))
-            @if(auth()->user()->isActiveSendFollowing($user->id))
+        @if(request()->user()->id !== (int) request()->route('id'))
+            @if(request()->user()->isActiveSendFollowing($user->id))
                 <a class="btn btn-success"
                    id="subscription"
                    role="button">Запрос отправлен
                 </a>
-            @elseif(!in_array(auth()->id(), $user->getIdFollower()))
+            @elseif(!in_array(request()->user()->id, $user->getIdFollower()))
                 <a class="btn btn-success"
                    id="subscription"
                    href="{{ route('customer.subscription.contact', $user->id) }}"
                    role="button">Отправить запрос
                 </a>
             @else
-
             @endif
         @endif
-        @if(auth()->user()->id === (int) request()->route('id'))
+        @if(request()->user()->id === (int) request()->route('id'))
             <a class="btn btn-success btn-block"
                href="{{ route('reporting.create') }}"
                role="button">Добавить отчет</a>
         @endif
 
-        @if(auth()->id() !== (int) request()->route('id'))
-            <form action="{{ route('customer.profile.subscriber.cancel', [auth()->id(), $user->id]) }}" method="POST">
+        @if(request()->user()->id !== (int) request()->route('id') && in_array(request()->user()->id, $user->getIdFollower()))
+            <form action="{{ route('customer.profile.subscriber.cancel', [request()->user()->id, $user->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit"

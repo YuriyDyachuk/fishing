@@ -12,13 +12,13 @@ class AdminAuthenticated
         if(\Auth::check())
         {
             // if user is not admin take him to his dashboard
-            if (\Auth::user()->isUser()) {
+            if (\request()->user()->isUser()) {
                 return redirect(route('main'));
             }
 
             // allow admin to proceed with request
-            else if (\Auth::user()->isAdmin() || \Auth::user()->isModerator()) {
-                if (\Auth::user()->isAdminBanned()) {
+            else if (\request()->user()->isAdmin() || \request()->user()->isModerator()) {
+                if (\request()->user()->isAdminBanned()) {
                     return redirect(route('main'));
                 }
 

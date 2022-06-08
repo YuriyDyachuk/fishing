@@ -35,7 +35,7 @@ class ReportLoadMoreController extends Controller
         if ($request->ajax()) {
             $reports = $reportService->getAllUser((int) $request->id);
             foreach ($reports as $k=>$report) {
-                $reports[$k]['avatar'] = $report->getFirstMediaUrl('gallery','small');
+                $reports[$k]['avatar'] = $report->getFirstMediaUrl('gallery','thumb');
                 $reports[$k]['commentCount'] = $report->comments()->count();
             }
         }

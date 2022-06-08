@@ -7,12 +7,11 @@
         <div class="container mt-5 px-lg-5">
             <div class="row">
                 <div class="accordion-body p-1">
-                    <img src="{{ $report->getFirstMediaUrl('gallery', 'small') }}" class="card-img-top" alt="Wild Landscape"/>
+                    <img src="{{ $report->getFirstMediaUrl('gallery', 'thumb') }}" class="card-img-top" alt="Wild Landscape"/>
                 </div>
 
                 <div class="row d-flex align-items-start mb-4">
                     <div class="col">
-                        <p class="text-center">Описание</p>
                         <small class="fw-hold">{{ strip_tags($report->description) }}</small>
                     </div>
                 </div>
@@ -87,7 +86,7 @@
                                         <!-- Single item -->
                                         @foreach($report->getMedia('gallery') as $k => $media)
                                             <div class="carousel-item @if($k == 0) active @endif">
-                                                <img src="{{ $media->getUrl('small') }}" class="d-block w-100" alt="Motorbike Smoke"/>
+                                                <img src="{{ $media->getUrl('thumb') }}" class="d-block w-100" alt="Motorbike Smoke"/>
                                             </div>
                                         @endforeach
                                     </div>
@@ -143,7 +142,7 @@
                         @include('sites.reports.comments._comment_replies', ['comments' => $report->comments, 'reportId' => $report->id])
                     </ul>
 
-                    <div class="ticket-comments alert alert-warning text-center m-0 @if(!auth()->user()) d-block @else d-none @endif">
+                    <div class="ticket-comments alert alert-warning text-center m-0 @if(!request()->user()) d-block @else d-none @endif">
                         <p class="m-0">Вы должны авторизоваться, чтобы оставлять комментарии.</p>
                         <small><a href="{{ route('login') }}" style="color: #000000">Login</a></small>
                     </div>
@@ -173,7 +172,7 @@
         </div>
 
         <div class="clear"></div>
-        <input type="hidden" value="{{ auth()->user()->id ?? false }}" id="authId">
+        <input type="hidden" value="{{ request()->user()->id ?? false }}" id="authId">
 
         <div class="d-flex text-center" id="popap">
             <p style="color: #d7614e">Для совершения действия требуется авторизация</p>
@@ -206,7 +205,22 @@
                 el.preventDefault();
 
                 if (!authId) {
-                    popap.style.left = "200px"
+
+                    var width = document.body.clientWidth;
+                    console.log(width)
+                    if (width <= 600) {
+                        popap.style.left = "20px"
+                        popap.style.width = "70%"
+                        popap.style.height = "auto"
+                        popap.style.fontSize = "14px"
+                        popap.style.padding = "5px"
+                    }else {
+                        popap.style.left = "200px"
+                        popap.style.width = "370px"
+                        popap.style.height = "85px"
+                        popap.style.fontSize = "15px"
+                    }
+
                     setTimeout(showPopap, 3000, popap);
                 }else {
 

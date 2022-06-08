@@ -127,6 +127,6 @@
     <script type="text/javascript" src="{{ asset('js/report-media.js') }}"></script>
 
     <script>
-        $('div.alert.alert-danger').delay(3000).slideUp(300)
+        $('div.alert.alert-danger').delay(6000).slideUp(300)
     </script>
 @endpush

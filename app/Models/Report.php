@@ -32,7 +32,7 @@ class Report extends Model implements HasMedia
 
     protected $casts = [
         'created_at' => 'datetime',
-        'blocking' => 'boolean',
+        'blocking' => 'boolean'
     ];
 
     ############################## [RELATION METHOD] ##############################
@@ -66,16 +66,28 @@ class Report extends Model implements HasMedia
     {
         $this->addMediaCollection('gallery')
             ->registerMediaConversions(function (Media $media) {
+
                 $this
                     ->addMediaConversion('small')
-                    ->width(MediaEnum::width()->value)
-                    ->height(MediaEnum::height()->value)
+                    ->width(500)
+                    ->height(375)
                     ->watermark(public_path('watermark_fix.png'))
-                    ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                    ->watermarkPosition(Manipulations::POSITION_BOTTOM_RIGHT)
+                    ->watermarkWidth(35)
+                    ->watermarkHeight(35)
+                    ->watermarkPadding(5,5)
+                    ->nonOptimized();
+
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(1024)
+                    ->height(780)
+                    ->watermark(public_path('watermark_fix.png'))
+                    ->watermarkPosition(Manipulations::POSITION_BOTTOM_RIGHT)
                     ->watermarkWidth(45)
                     ->watermarkHeight(45)
-                    ->watermarkPadding(10,10)
-                    ->watermarkOpacity(90);
+                    ->watermarkPadding(5,5)
+                    ->nonOptimized();
             });
     }
 }

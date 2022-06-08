@@ -30,7 +30,7 @@ class ProfileController extends Controller
 
         return view('sites.profiles.index', [
                     'user' => $user,
-                    'followers' => $this->userService->getMyFollow()
+                    'followers' => $user->followersConfirm()->paginate(1)
                 ]);
     }
 
