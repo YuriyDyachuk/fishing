@@ -1,4 +1,4 @@
-var default_zoom = 6,
+var default_zoom = 7,
     default_center_lat = 53.894473,
     default_center_lng = 27.561389,
     default_marker_size = 36,
