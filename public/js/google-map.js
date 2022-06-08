@@ -186,7 +186,7 @@ function generateInfo(el) {
         "<small> Автор:</small>" +
         "<p class='bold'>" + el['user']['name'] + "</p>" +
         "<small> Дата создания:</small>" +
-        "<p class='bold'>" + date + "</p>"
+        "<p class='bold'>" + date + "</p>" +
         "<p class='bold'>" + "<a class='btn btn-sm btn-warning' href=" + url + ">Просмотр" + "</a>" + "</p>" +
         "</div>";
 }
