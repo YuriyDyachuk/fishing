@@ -1,5 +1,5 @@
 @foreach($comments as $comment)
-    <li class="list-group-item d-flex flex-column justify-content-between @if(is_null($comment->parent_id)) @else ml-4 @endif ">
+    <li class="list-group-item d-flex flex-column justify-content-between @if(is_null($comment->parent_id)) @else ml-4 @endif  @if($comment->is_allowed) d-none @endif">
         <div class="d-flex flex-row justify-content-between">
             <div class="ms-3">
                 <a href="{{ route('customer.profile.show', $comment->user->id) }}">

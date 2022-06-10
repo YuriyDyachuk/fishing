@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#111111">
+    <meta name="userId" content="{{ request()->user()->id ?? '' }}">
     <title>Рыбацкий кейс</title>
     @include('sites.layouts._include.style')
 
@@ -118,8 +119,6 @@
     @include('sites.layouts.partials.header')
 
     @yield('content')
-
-    <div id="app"></div>
 
     @include('sites.layouts.partials.footer')
 

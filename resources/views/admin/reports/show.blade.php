@@ -5,6 +5,11 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col">
+                    @include('admin._include.errors')
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-2 mt-3">
                     <a href="{{ route('admin.reports.create') }}"
                        class="btn btn-block btn-outline-success btn-xs">Новый отчет
@@ -100,20 +105,31 @@
                                 <!-- Post -->
                                 @foreach($report->comments as $comment)
                                     <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="@if($comment->user->media('media')->exists()) {{ $comment->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
-                                             style="width: 80px;height: 80px;"
-                                             alt="user image">
-                                        <span class="username">
-                                          <a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->name }}</a>
-                                        </span>
-                                        <span class="description">{{ $comment->customDate }}</span>
+                                        <div class="user-block">
+                                            <img class="img-circle img-bordered-sm" src="@if($comment->user->media('media')->exists()) {{ $comment->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif"
+                                                 style="width: 50px;height: 50px;"
+                                                 alt="user image">
+                                            <span class="username pl-2">
+                                              <a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->name }}</a>
+                                            </span>
+                                            <span class="description pl-2">{{ $comment->customDate }}</span>
+                                        </div>
+                                        <!-- /.user-block -->
+                                        <p class="pl-2" style="@if($comment->is_allowed) background-color: #a3abcc; border-radius: 4px; color: white; @endif">
+                                            {{ $comment->body }}
+                                        </p>
+                                        @if($comment->is_allowed)
+                                            <form action="{{ route('admin.reports.comment.destroy', [$report->id, $comment->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                        class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        {{ $comment->body }}
-                                    </p>
-                                </div>
                                 @endforeach
                                 <!-- /.post -->
                             </div>
@@ -132,5 +148,8 @@
 @endsection
 
 @push('scripts')
-
+    <script>
+        $('div.alert.alert-danger').delay(6000).slideUp(300)
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+    </script>
 @endpush

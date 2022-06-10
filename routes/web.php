@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\Report\MediaReportController;
 use App\Http\Controllers\Admin\Report\ReportController;
-use App\Http\Controllers\Admin\Users\BannedUserController;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\Sites\MainController;
 use App\Http\Controllers\Sites\Report\CommentController;
 use App\Http\Controllers\Sites\Report\CommentLikeController;
 use App\Http\Controllers\Sites\Report\ReportingController;
+use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\MediaProfileController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SubscribeController;
@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('signup')->group(function () {
     Route::get('preview', [AuthController::class, 'index'])->name('preview');
+
     Route::prefix('new-customer')->group(function () {
         Route::get('', [AuthController::class, 'customRegister'])->name('new.customer');
         Route::post('', [AuthController::class, 'register'])->name('new.customer.register');
@@ -62,6 +63,8 @@ Route::prefix('signup')->group(function () {
 ############################## [MAIN SECTION] ##############################
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+Route::get('about', [AboutUsController::class, 'index'])->name('about.us');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 ############################## [REPORTING SECTION] ##############################
 
@@ -71,6 +74,7 @@ Route::prefix('reports')->group(function () {
     Route::get('', [ReportingController::class, 'index'])->name('reporting.index');
     Route::get('create', [ReportingController::class, 'create'])->name('reporting.create')->middleware('auth');
     Route::post('', [ReportingController::class, 'store'])->name('reporting.store')->middleware('auth');
+
     Route::prefix('{id}')->group(function () {
         Route::get('', [ReportingController::class, 'show'])->name('reporting.show');
     });
@@ -81,11 +85,10 @@ Route::prefix('reports')->group(function () {
         Route::post('like', [CommentLikeController::class, 'store'])->name('customer.comment.like-add');
     });
 });
-Route::get('about', [AboutUsController::class, 'index'])->name('about.us');
-
-############################## [PROFILE SECTION] ##############################
 
 Route::middleware('auth')->group(function () {
+
+    ############################## [PROFILE SECTION] ##############################
     Route::prefix('profile')->group(function () {
 
         Route::get('reports', [\App\Http\Controllers\Sites\ReportLoadMoreController::class, 'loadMoreReport'])->name('customer.load.report');
@@ -107,18 +110,32 @@ Route::middleware('auth')->group(function () {
                 Route::patch('', [ProfileController::class, 'update'])->name('customer.profile.update');
                 Route::post('media', [MediaProfileController::class, 'store'])->name('customer.profile.media');
             });
+
+            ############################## [CHAT SECTION] ##############################
+            Route::prefix('chats')->group(function () {
+
+                Route::get('', [ChatController::class, 'index'])->name('customer.chats.index');
+                Route::post('', [ChatController::class, 'store'])->name('customer.chats.store');
+
+                Route::prefix('{chatId}')->group(function () {
+                    Route::get('', [ChatController::class, 'show'])->name('customer.chats.show');
+                    Route::delete('', [ChatController::class, 'destroy'])->name('customer.chats.destroy');
+                });
+
+            });
         });
     });
 
     Route::get('region/{id}', [RegionController::class, 'index'])->name('region');
 });
 
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 ############################## [ADMIN SECTION] ##############################
 
 Route::middleware(['auth', 'admin'])->group(function () {
+
     Route::prefix('admin')->group(function () {
+
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
         Route::prefix('reports')->group(function () {
@@ -126,6 +143,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('', [ReportController::class, 'index'])->name('admin.reports.index');
             Route::get('create', [ReportController::class, 'create'])->name('admin.reports.create');
             Route::post('', [ReportController::class, 'store'])->name('admin.reports.store');
+
             Route::prefix('{id}')->group(function () {
                 Route::get('', [ReportController::class, 'show'])->name('admin.reports.show');
 
@@ -138,16 +156,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
                 Route::delete('media/{uuid}', [MediaReportController::class, 'destroy'])->name('admin.reports.media.delete');
 
+                Route::delete('comment/{commentId}/delete', [\App\Http\Controllers\Admin\Report\CommentController::class, 'destroy'])->name('admin.reports.comment.destroy');
+
                 // Sortable media report
                 Route::post('media', [MediaReportController::class, 'sortable'])->name('admin.report.media.position');
             });
         });
 
         Route::prefix('users')->group(function () {
+
             Route::get('', [UserController::class, 'index'])->name('admin.users.index');
             Route::get('moderat', [UserController::class, 'moderation'])->name('admin.users.moderat')->middleware('admin.custom');
             Route::get('create', [UserController::class, 'create'])->name('admin.users.create');
             Route::post('', [UserController::class, 'store'])->name('admin.users.store');
+
             Route::prefix('{id}')->group(function () {
                 Route::get('', [UserController::class, 'show'])->name('admin.users.show');
                 Route::get('edit', [UserController::class, 'edit'])->name('admin.users.edit');

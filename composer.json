@@ -17,7 +17,8 @@
         "spatie/data-transfer-object": "^2.8",
         "spatie/laravel-enum": "^3.0",
         "spatie/laravel-medialibrary": "^9.0.0",
-        "stevebauman/location": "^6.5"
+        "stevebauman/location": "^6.5",
+        "vearutop/php-obscene-censor-rus": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

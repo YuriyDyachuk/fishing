@@ -73,6 +73,21 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Report::class);
     }
 
+    /* CHAT USER */
+
+    public function chats(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Chat::class,'sender_id','id');
+    }
+
+    public function chat(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Chat::class,'sender_id','id');
+    }
+
+    /* END CHAT */
+
+
     /* Friends relations */
     public function follows(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -175,6 +190,11 @@ class User extends Authenticatable implements HasMedia
     public function isAdminBanned(): bool
     {
         return $this->ban;
+    }
+
+    public function countReportPublished(): ?int
+    {
+        return $this->reports()->where('publish', true)->count();
     }
 
     //================================== [CUSTOM METHODS MEDIA LIBRARY] ==================================#

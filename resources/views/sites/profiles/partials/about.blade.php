@@ -14,7 +14,7 @@
 
         <ul class="list-group list-group-unbordered mb-3">
             <li class="list-group-item">
-                <b>Reports</b> <a class="float-right">{{ $user->reports()->count()}}</a>
+                <b>Reports</b> <a class="float-right">{{ $user->countReportPublished()}}</a>
             </li>
             <li class="list-group-item">
                 <b>Friends</b> <a class="float-right">{{ $user->isConfirmFollowersCount() }}</a>

@@ -25,9 +25,9 @@
                         <li class="pb-2">
                             <a href="{{ route('customer.profile.subscribers', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
                         </li>
-                        <li class="pb-2">
-                            <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
-                        </li>
+{{--                        <li class="pb-2">--}}
+{{--                            <a href="{{ route('customer.chats.index', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>--}}
+{{--                        </li>--}}
                         @if(in_array(request()->user()->role, \App\Enums\RoleEnum::getRole()) && !request()->user()->isAdminBanned())
                             <li class="pb-2">
                                 <a href="{{ route('admin.index') }}" class="header-auth__link--drop auth-link auth-link--register">Админ панель</a>
@@ -83,9 +83,9 @@
                         <li class="pb-2">
                             <a href="{{ route('customer.profile.subscribers', request()->user()->id) }}" class="header-auth__link--drop auth-link auth-link--register">Запросы</a>
                         </li>
-                        <li class="pb-2">
-                            <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>
-                        </li>
+{{--                        <li class="pb-2">--}}
+{{--                            <a href="#" class="header-auth__link--drop auth-link auth-link--register">Чаты</a>--}}
+{{--                        </li>--}}
                         @if(in_array(request()->user()->role, [1,2]) && !request()->user()->isAdminBanned())
                             <li class="pb-2">
                                 <a href="{{ route('admin.index') }}" class="header-auth__link--drop auth-link auth-link--register">Админ панель</a>

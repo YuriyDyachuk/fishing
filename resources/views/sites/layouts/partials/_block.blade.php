@@ -36,12 +36,12 @@
                     </ul>
                 </div>
 
-                @if($report->comments->count())
+                @if($report->comments()->where('is_allowed',false)->count())
                     <div class="col">
                         <span class="badge rounded-pill badge-success">Last comment</span>
                         <i class="fas fa-comments"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">{{ $report->comments->count() }}</span>
-                        @foreach($report->comments()->latest()->get()->take(1) as $comment)
+                        <span class="badge rounded-pill badge-notification bg-danger">{{ $report->comments()->where('is_allowed',false)->count() }}</span>
+                        @foreach($report->comments()->latest()->where('is_allowed',false)->get()->take(1) as $comment)
                             <ul class="list-group list-group-light">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
