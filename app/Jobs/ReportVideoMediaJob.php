@@ -37,7 +37,7 @@ class ReportVideoMediaJob implements ShouldQueue
         $file = FFMpeg::fromDisk('public')
             ->open($this->path)
             ->addFilter(function (VideoFilters $filters) use ($watermarkPath) {
-                $filters->resize(new \FFMpeg\Coordinate\Dimension(854, 480));
+//                $filters->resize(new \FFMpeg\Coordinate\Dimension(854, 480));
                 $filters->watermark($watermarkPath, [
                     'position' => 'relative',
                     'top' => 10,
