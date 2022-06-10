@@ -72,7 +72,7 @@
 
         function reportDomElement(el) {
             let urlPost = window.location + '/' + el['id'];
-            let urlAuthor = 'http://62.113.109.41' +  '/profile/' + el['user']['id'];
+            let urlAuthor = 'https://xn--m1aaxj.xn--90ais' +  '/profile/' + el['user']['id'];
             let newDate = getDate(el['created_at']);
 
             return `

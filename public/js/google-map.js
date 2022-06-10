@@ -141,7 +141,7 @@ function onDateChange(obj) {
 function getReportOfDate(regionId, date, dateRange) {
     $.ajax({
         type: 'GET',
-        url : 'http://62.113.109.41/reports/search/',
+        url : 'https://xn--m1aaxj.xn--90ais/reports/search/',
         cache: false,
         contentType: false,
         data: {regionId: regionId, date: date, dateRange: dateRange},
@@ -180,7 +180,7 @@ function getReportOfDate(regionId, date, dateRange) {
 function generateInfo(el) {
     let date = generateDate(el['created_at'])
 
-    let url = "http://62.113.109.41/reports/" + el['id'];
+    let url = "https://xn--m1aaxj.xn--90ais/reports/" + el['id'];
 
     return  "<div class='map-box-content'>"+
         "<small> Автор:</small>" +

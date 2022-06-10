@@ -52,9 +52,7 @@ class AuthController extends Controller
             return redirect()->back()->with(['error' => $exception->getMessage()])->withInput();
         }
 
-        // Перевести назад ответ на подтверждение почты - customer.email.verify
-        return redirect()->route('main')->with(['success' => 'Регистрация на сервисе прошла успешно.'])->withInput();
-
+        return redirect()->route('new.customer.verify')->with(['success' => 'Регистрация на сервисе прошла успешно.'])->withInput();
     }
 
     public function customLogin()

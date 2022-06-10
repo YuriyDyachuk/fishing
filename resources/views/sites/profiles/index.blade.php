@@ -114,7 +114,7 @@
         }
 
         function reportUserDomElement(el) {
-            let urlPost = 'http://62.113.109.41/reports/' + el['id'];
+            let urlPost = 'https://xn--m1aaxj.xn--90ais/reports/' + el['id'];
             let newDate = getDate(el['created_at']);
 
             return `
