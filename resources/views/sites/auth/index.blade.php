@@ -70,7 +70,8 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-
+        $('div.alert.alert-success').delay(2000).slideUp(300)
+        $('div.alert.alert-danger').delay(3000).slideUp(300)
     </script>
 </div>
 </body>

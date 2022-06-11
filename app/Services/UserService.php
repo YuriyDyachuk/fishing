@@ -36,7 +36,7 @@ class UserService
     {
         $user = $this->userRepository->create($DTO);
         $user->emailTokenVerify()->create(['token' => md5(\Str::random(64))]);
-        $this->sendEmail($user);
+//        $this->sendEmail($user);
     }
 
     public function findById(int $id): ?User
