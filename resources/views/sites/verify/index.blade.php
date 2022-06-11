@@ -43,7 +43,7 @@
         let url = "{{ route('main') }}";
         window.setTimeout(function(){
             window.location.href = url;
-        }, 6000);
+        }, 3000);
 
     </script>
 </div>
