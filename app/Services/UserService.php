@@ -34,19 +34,14 @@ class UserService
 
     public function create(AuthDTO $DTO): void
     {
-        $this->userRepository->create($DTO);
+        $user = $this->userRepository->create($DTO);
+        $user->emailTokenVerify()->create(['token' => md5(\Str::random(64))]);
+        $this->sendEmail($user);
     }
 
     public function findById(int $id): ?User
     {
         return $this->userRepository->getById($id);
-    }
-
-    public function findByEmail(string $email): void
-    {
-        $user = $this->userRepository->getByEmail($email);
-        $user->emailTokenVerify()->create(['token' => md5(\Str::random(64))]);
-        $this->sendEmail($user);
     }
 
     public function getByEmail(string $email): User

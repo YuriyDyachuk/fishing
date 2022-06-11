@@ -28,25 +28,14 @@ class VerifyEmailController extends Controller
         return view('sites.verify.email');
     }
 
-    public function verifySendEmail(Request $request): RedirectResponse
-    {
-        if (!$this->userService->existsByEmail($request->input('email'))) {
-            return redirect()->back()->withErrors(['error' => 'Данный email не найден.']);
-        }
-
-        $this->userService->findByEmail($request->input('email'));
-
-        return redirect()->route('main')->withInput(['success' => 'Ссылка подтверждения отправленна на почту.']);
-    }
-
     public function verifySendEmailToken(int $id, string $token): RedirectResponse
     {
         if (!$this->userService->existsById($id) && !$this->userService->existsByTokenAndUser($id, $token)) {
-            return redirect()->back()->withErrors(['error' => 'Данное действие запрещенно.']);
+            return redirect()->back()->with(['error' => 'Данное действие запрещенно.'])->withInput();
         }
 
         $this->userService->successVerifyEmail($id);
 
-        return redirect()->route('main')->withInput(['success' => 'Электронная почта успешно подтвержденна.']);
+        return redirect()->route('main')->with(['success' => 'Электронная почта успешно подтвержденна.'])->withInput();
     }
 }

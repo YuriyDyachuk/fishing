@@ -13,7 +13,7 @@
     <div class="container d-flex justify-content-center">
         <a class="btn btn-success"
            href="{{ "https://xn--m1aaxj.xn--90ais/signup/new-customer/verify-email/$userId/$token" }}"
-           target="_blank">Подтвердить почту
+           target="_blank">Подтвердите почту
         </a>
     </div>
 </div>

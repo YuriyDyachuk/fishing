@@ -70498,6 +70498,9 @@ a {
     width: 100% !important;
     padding: 10px !important;
   }
+  .content__display .content-part__form .title, .content__display .modal-prev-form .title {
+    display: block !important;
+  }
 }
 
 .container {
@@ -70539,6 +70542,9 @@ a {
     align-self: center;
     width: auto;
     background-color: #ffffff;
+  }
+  #modal_page .content-part__form .title {
+    display: block !important;
   }
   #modal_page .content__display--close {
     top: 0;
@@ -71046,7 +71052,7 @@ button.button-style1, button.button-style1:active, button.button-style1:focus, b
   justify-content: center;
   width: 40%;
   --tw-bg-opacity: 1;
-  background-color: rgb(245 246 247/var(--tw-bg-opacity));
+  background-color: var(--color-light);
 }
 .content-part__form__email a {
   --tw-bg-opacity: 1!important;

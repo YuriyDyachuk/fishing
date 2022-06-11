@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#111111">
-    <title>Регистрация/Логин</title>
+    <title>Регистрация</title>
     @include('sites.layouts._include.style')
 </head>
 
@@ -15,27 +15,37 @@
 <div class="site-container">
 
     <section>
-        <div class="container-fluid content-part" id="modal_page">
-            <a href="{{ route('main') }}" class="content__display--close">&times;</a>
-            <div class="content-part__text">
-                <div class="text-trench">Step 2/2</div>
-                <h1>Подтвердите аккаунт одним из способов</h1>
-                <p>Выбирайте то что доступно</p>
+        <div class="container-fluid content-part content__display" id="modal-confirm">
+
+            <!-- Modal confirm -->
+
+            <div class="content-part__text modal-next-title"  href="register-form">
+                <h1>Благодарим за регистрацию на сервисе</h1>
+                <p>Проверьте свою почту для подтверждения аккаунта!</p>
             </div>
-            <div class="content-part__form modal-prev-form">
-                <div class="content-part__form__gmail">
-                    <a class="btn btn-primary" style="background-color: #dd4b39;" href="{{ route('new.customer.verifyEmail') }}" role="button">
-                        <i class="fab fa-google"></i>
-                        <span>GMAIL</span>
-                    </a>
+            <div class="content-part__form modal-next-form">
+                <div class="title d-none">
+                    <h1>Благодарим за регистрацию на сервисе</h1>
+                    <p>Проверьте свою почту для подтверждения аккаунта!</p>
+                </div>
+                <div class="sm:w-col-6 md:w-col-3 flex flex-col">
+                    <img src="{{ asset('images/icon-excellent-flat.webp') }}"
+                         alt="icon email verify">
                 </div>
             </div>
+
         </div>
     </section>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/register_login.js') }}"></script>
+    <script>
 
+        let url = "{{ route('main') }}";
+        window.setTimeout(function(){
+            window.location.href = url;
+        }, 6000);
+
+    </script>
 </div>
 </body>
 </html>

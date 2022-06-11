@@ -47,6 +47,7 @@ class AuthController extends Controller
             \DB::commit();
 
         }catch (\Throwable $exception) {
+            \Log::info('MESSAGE ======== ' . $exception->getMessage());
             \DB::rollBack();
 
             return redirect()->back()->with(['error' => $exception->getMessage()])->withInput();

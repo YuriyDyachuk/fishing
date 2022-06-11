@@ -42,11 +42,9 @@ Route::prefix('signup')->group(function () {
         Route::get('verify', [VerifyEmailController::class, 'verify'])->name('new.customer.verify');
 
         Route::prefix('verify-email')->group(function () {
-            Route::get('', [VerifyEmailController::class, 'verifyEmail'])->name('new.customer.verifyEmail');
             Route::middleware('user.verifyEmail')->group(function () {
-                Route::post('', [VerifyEmailController::class, 'verifySendEmail'])->name('new.customer.verifySendEmail');
+                Route::get('{id}/{token}', [VerifyEmailController::class, 'verifySendEmailToken'])->name('new.customer.verifySendEmailToken');
             });
-            Route::get('{id}/{token}', [VerifyEmailController::class, 'verifySendEmailToken'])->name('new.customer.verifySendEmailToken');
         });
     });
 
