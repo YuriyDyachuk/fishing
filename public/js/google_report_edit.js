@@ -1,14 +1,14 @@
 var labelIndex = 0;
 var marker;
-var lat = 53.894473;
-var lng = 27.561389;
+var lat = parseInt(document.getElementById("lat").value);
+var lng = parseInt(document.getElementById("lng").value);
 var region = [];
 var geocoder;
 
 function initMap() {
     var bangalore = { lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('mapReport'), {
-        zoom: 8,
+        zoom: 10,
         position: bangalore,
         center: bangalore
     });

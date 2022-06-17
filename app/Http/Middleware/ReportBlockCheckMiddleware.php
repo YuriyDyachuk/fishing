@@ -10,11 +10,11 @@ class ReportBlockCheckMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $report = Report::query()->findOrFail((int) $request->id);
-
-        if ($report->blocking) {
-            return redirect()->route('admin.reports.index')->with(['error' => 'Action is blocked!'])->withInput();
-        }
+//        $report = Report::query()->findOrFail((int) $request->id);
+//
+//        if ($report->blocking) {
+//            return redirect()->route('admin.reports.index')->with(['error' => 'Action is blocked!'])->withInput();
+//        }
 
         return $next($request);
     }

@@ -120,6 +120,11 @@ class User extends Authenticatable implements HasMedia
     }
     /* End friends relations */
 
+    public function supports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Support::class);
+    }
+
     ##############################  [CUSTOM METHOD]  ##############################
 
     public function isVerify(): bool

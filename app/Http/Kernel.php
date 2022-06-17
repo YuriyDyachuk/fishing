@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'user.verifyEmail' => \App\Http\Middleware\UserVerifyEmailMiddleware::class,
         'report.blocking' => \App\Http\Middleware\ReportBlockMiddleware::class,
         'report.blocking.check' => \App\Http\Middleware\ReportBlockCheckMiddleware::class,
+        'banned-user' => \App\Http\Middleware\BannedUserMiddleware::class,
     ];
 }

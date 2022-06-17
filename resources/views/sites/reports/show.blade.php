@@ -148,24 +148,26 @@
                     </div>
 
                     @auth()
-                        <div class="pt-4">
-                            <p class="fw-bold mb-1">Оставить комментарии</p>
+                        @if(!request()->user()->ban)
+                            <div class="pt-4">
+                                <p class="fw-bold mb-1">Оставить комментарии</p>
 
-                            <form action="{{ route('customer.comment.store') }}" method="POST">
-                            @csrf
-                            <!-- Message input -->
-                                <div class="form-outline mb-4">
-                                                            <textarea class="form-control"
-                                                                      name="comment"
-                                                                      id="form6Example7"
-                                                                      required
-                                                                      rows="4"></textarea>
-                                </div>
-                                <!-- Submit button -->
-                                <input type="hidden" name="repostId" value="{{ $report->id }}">
-                                <button type="submit" class="btn btn-primary btn-block mb-4">Отправить комментарий</button>
-                            </form>
-                        </div>
+                                <form action="{{ route('customer.comment.store') }}" method="POST">
+                                @csrf
+                                <!-- Message input -->
+                                    <div class="form-outline mb-4">
+                                                                <textarea class="form-control"
+                                                                          name="comment"
+                                                                          id="form6Example7"
+                                                                          required
+                                                                          rows="4"></textarea>
+                                    </div>
+                                    <!-- Submit button -->
+                                    <input type="hidden" name="repostId" value="{{ $report->id }}">
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">Отправить комментарий</button>
+                                </form>
+                            </div>
+                        @endif
                     @endauth
                 </section>
             </div>

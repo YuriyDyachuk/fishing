@@ -18,7 +18,7 @@
 
             <div class="info-author-comment d-flex card-comment-main">
                 <div class="col">
-                    <span class="badge rounded-pill badge-primary">Author</span>
+                    <span class="badge rounded-pill badge-primary">Автор</span>
                     <ul class="list-group list-group-light">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
@@ -38,7 +38,7 @@
 
                 @if($report->comments()->where('is_allowed',false)->count())
                     <div class="col">
-                        <span class="badge rounded-pill badge-success">Last comment</span>
+                        <span class="badge rounded-pill badge-success">Комментарий</span>
                         <i class="fas fa-comments"></i>
                         <span class="badge rounded-pill badge-notification bg-danger">{{ $report->comments()->where('is_allowed',false)->count() }}</span>
                         @foreach($report->comments()->latest()->where('is_allowed',false)->get()->take(1) as $comment)
@@ -46,7 +46,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <a href="{{ route('customer.profile.show', $comment->user->id) }}">
-                                            <img src="@if($report->user->media('media')->exists()) {{ $report->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
+                                            <img src="@if($comment->user->media('media')->exists()) {{ $comment->user->getFirstMediaUrl('media') }} @else {{ asset('images/user/user-128.png') }} @endif" alt=""
                                                  style="width: 50px; height: 50px"
                                                  class="rounded-circle" />
                                         </a>

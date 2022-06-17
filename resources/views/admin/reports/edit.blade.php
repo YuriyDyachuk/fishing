@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- Main content -->
+    @include('_include.errors')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -80,7 +81,7 @@
                                                  id="pos__{{ $media->id }}"
                                                  draggable="true">
                                                 <img class="img-fluid mb-3"
-                                                     src="{{ $media->getUrl('small') }}"
+                                                     src="{{ $media->getUrl('thumb') }}"
                                                      style="height: 74%!important"
                                                      alt="Photo">
                                                 <form action="{{ route('admin.reports.media.delete', [$report->id, $media->uuid]) }}" method="POST">
@@ -161,7 +162,7 @@
             src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_PLACE_KEY') }}&libraries=places&callback=initMap"
             defer></script>
     {{--  Init map Google API  --}}
-    <script type="text/javascript" src="{{ asset('js/google-map_new-report.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/google_report_edit.js') }}"></script>
 
     <script>
         $(function() {

@@ -10,13 +10,13 @@
 @endif
 
 @if(session('success'))
-    <div class="alert alert-success alert-dismissible mt-1 container" style="position: relative;top: 95px;height: 50px;">
+    <div class="alert alert-success alert-dismissible mt-1 container" style="position: relative;top: 90px;height: 50px;">
         <h6><i class="icon fas fa-check"></i> {{session('success')}}</h6>
     </div>
 @endif
 
 @if(session('error'))
-    <div class="alert alert-danger alert-dismissible mt-1 container" style="position: relative;top: 95px;height: 50px;">
+    <div class="alert alert-danger alert-dismissible mt-1 container" style="position: relative;top: 90px;height: 50px;">
         <h6><i class="icon fas fa-ban"></i> {{session('error')}}</h6>
     </div>
 @endif

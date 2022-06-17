@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- Main content -->
+    @include('admin._include.errors')
     <section class="content">
         <div class="container-fluid">
             <div class="row">

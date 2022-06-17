@@ -23,5 +23,4 @@
             fileName ? $label.addClass('has-video').find('.js-fileName-video').html(fileName) : $label.removeClass('has-video').html(labelVal);
         });
     });
-
 })();

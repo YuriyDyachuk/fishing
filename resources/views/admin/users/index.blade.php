@@ -4,6 +4,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            @include('admin._include.errors')
             <div class="row">
                 <div class="col-12">
                     <div class="card mt-3">
@@ -66,6 +67,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
+                                                        onclick="return confirm('Вы уверены, что хотите удалить данного пользователя?')"
                                                         class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash">
                                                     </i>
@@ -118,5 +120,6 @@
         });
 
         $('div.alert.alert-success').delay(3000).slideUp(300)
+        $('div.alert.alert-danger').delay(6000).slideUp(300)
     </script>
 @endpush

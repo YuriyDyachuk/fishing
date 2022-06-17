@@ -26,6 +26,7 @@ class ReportVideoMediaJob implements ShouldQueue
 
     public function __construct(Model $model, string $path)
     {
+        $this->onQueue('redis-long-running');
         $this->model = $model;
         $this->path = $path;
     }
@@ -42,8 +43,9 @@ class ReportVideoMediaJob implements ShouldQueue
                     'position' => 'relative',
                     'top' => 10,
                     'left' => 10,
-                    'width' => 20,
-                    'height' => 22,
+                    'width' => 150,
+                    'height' => 150,
+                    'opacity' => 40
                 ]);
             })
             ->export()

@@ -10,14 +10,14 @@
 
         <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
-        <p class="text-muted text-center">г. {{ $user->city }}</p>
+        <p class="text-muted text-center">@if(!is_null($user->city)) г. {{ $user->city }} @endif</p>
 
         <ul class="list-group list-group-unbordered mb-3">
             <li class="list-group-item">
-                <b>Reports</b> <a class="float-right">{{ $user->countReportPublished()}}</a>
+                <b>Отчеты</b> <a class="float-right">{{ $user->countReportPublished()}}</a>
             </li>
             <li class="list-group-item">
-                <b>Friends</b> <a class="float-right">{{ $user->isConfirmFollowersCount() }}</a>
+                <b>Друзья</b> <a class="float-right">{{ $user->isConfirmFollowersCount() }}</a>
             </li>
         </ul>
 
@@ -27,7 +27,7 @@
                    id="subscription"
                    role="button">Запрос отправлен
                 </a>
-            @elseif(!in_array(request()->user()->id, $user->getIdFollower()))
+            @elseif(!in_array(request()->user()->id, $user->getIdFollower()) && !request()->user()->ban)
                 <a class="btn btn-success"
                    id="subscription"
                    href="{{ route('customer.subscription.contact', $user->id) }}"
@@ -36,13 +36,18 @@
             @else
             @endif
         @endif
-        @if(request()->user()->id === (int) request()->route('id'))
+        @if(request()->user()->id === (int) request()->route('id') && !request()->user()->ban)
             <a class="btn btn-success btn-block"
                href="{{ route('reporting.create') }}"
                role="button">Добавить отчет</a>
+        @else
+            <span class="text-sm alert-danger d-flex text-center mb-2">Профиль заблокирован администрацией</span>
+            <a class="btn btn-warning btn-block"
+               href="{{ route('customer.support.create') }}"
+               role="button">Написать в поддержку</a>
         @endif
 
-        @if(request()->user()->id !== (int) request()->route('id') && in_array(request()->user()->id, $user->getIdFollower()))
+        @if(request()->user()->id !== (int) request()->route('id') && in_array(request()->user()->id, $user->getIdFollower()) && !request()->user()->ban)
             <form action="{{ route('customer.profile.subscriber.cancel', [request()->user()->id, $user->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')

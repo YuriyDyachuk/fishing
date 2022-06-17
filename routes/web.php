@@ -13,6 +13,7 @@ use App\Http\Controllers\Sites\MainController;
 use App\Http\Controllers\Sites\Report\CommentController;
 use App\Http\Controllers\Sites\Report\CommentLikeController;
 use App\Http\Controllers\Sites\Report\ReportingController;
+use App\Http\Controllers\Sites\SupportController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\MediaProfileController;
 use App\Http\Controllers\User\ProfileController;
@@ -89,6 +90,11 @@ Route::middleware('auth')->group(function () {
     ############################## [PROFILE SECTION] ##############################
     Route::prefix('profile')->group(function () {
 
+        Route::middleware('banned-user')->prefix('support')->group(function () {
+            Route::get('create', [SupportController::class, 'create'])->name('customer.support.create');
+            Route::post('', [SupportController::class, 'store'])->name('customer.support.store');
+        });
+
         Route::get('reports', [\App\Http\Controllers\Sites\ReportLoadMoreController::class, 'loadMoreReport'])->name('customer.load.report');
         Route::get('followers', [\App\Http\Controllers\Sites\ReportLoadMoreController::class, 'loadMoreFollowers'])->name('customer.load.follower');
 
@@ -135,6 +141,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('admin')->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+
+        Route::prefix('supports')->group(function () {
+            Route::get('', [\App\Http\Controllers\Admin\SupportController::class, 'index'])->name('supports.index');
+            Route::get('{id}', [\App\Http\Controllers\Admin\SupportController::class, 'show'])->name('supports.show');
+            Route::patch('{id}', [\App\Http\Controllers\Admin\SupportController::class, 'update'])->name('supports.update');
+            Route::delete('{id}', [\App\Http\Controllers\Admin\SupportController::class, 'destroy'])->name('supports.destroy');
+        });
+
+        Route::get('support', [SupportController::class, 'create'])->name('support.create');
 
         Route::prefix('reports')->group(function () {
             Route::get('not-published', [ ReportController::class, 'published'])->name('admin.reports.not.published');

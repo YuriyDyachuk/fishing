@@ -71,7 +71,7 @@ class UserService
 
     private function sendEmail(User $user)
     {
-        \Mail::to($user->email)->send(new VerifyEmailMail($user->id, $user->emailTokenVerify()->value('token')));
+        \Mail::to('yuriydyachuk91@gmail.com')->send(new VerifyEmailMail($user->id, $user->emailTokenVerify()->value('token')));
     }
 
     public function existsByTokenAndUser(int $id, string $token): bool

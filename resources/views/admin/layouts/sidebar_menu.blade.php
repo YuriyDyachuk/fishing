@@ -77,6 +77,12 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('supports.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-list-ul"></i>
+                        <p>Заявки</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('main') }}" class="nav-link">
                         <i class="nav-icon fas fa-map-marked"></i>
                         <p>Перейти на сайт</p>

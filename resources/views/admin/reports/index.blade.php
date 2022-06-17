@@ -78,9 +78,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                        class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash">
-                                                    </i>
+                                                        onclick="return confirm('Вы уверены, что хотите удалить данний отчет?')"
+                                                        class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>
@@ -130,5 +129,6 @@
         });
 
         $('div.alert.alert-success').delay(3000).slideUp(300)
+        $('div.alert.alert-danger').delay(6000).slideUp(300)
     </script>
 @endpush
