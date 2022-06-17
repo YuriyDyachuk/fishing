@@ -36,15 +36,18 @@
             @else
             @endif
         @endif
-        @if(request()->user()->id === (int) request()->route('id') && !request()->user()->ban)
-            <a class="btn btn-success btn-block"
+        @if(request()->user()->id == (int) request()->route('id'))
+            <a class="btn btn-success btn-block @if(request()->user()->ban) d-none @endif"
                href="{{ route('reporting.create') }}"
                role="button">Добавить отчет</a>
-        @else
-            <span class="text-sm alert-danger d-flex text-center mb-2">Профиль заблокирован администрацией</span>
-            <a class="btn btn-warning btn-block"
-               href="{{ route('customer.support.create') }}"
-               role="button">Написать в поддержку</a>
+
+            @if(request()->user()->ban)
+                <span class="text-sm alert-danger d-flex text-center mb-2">Профиль заблокирован администрацией</span>
+                <a class="btn btn-warning btn-block"
+                   href="{{ route('customer.support.create') }}"
+                   role="button">Написать в поддержку</a>
+            @endif
+
         @endif
 
         @if(request()->user()->id !== (int) request()->route('id') && in_array(request()->user()->id, $user->getIdFollower()) && !request()->user()->ban)
