@@ -54,7 +54,7 @@
                                                     <a href="{{ route('customer.profile.show', $report->user->id) }}">
                                                         <p class="fw-bold mb-1">{{ $report->user->name }}</p>
                                                     </a>
-                                                    <small class="fw-hold mb-0"> г. {{ $report->user->city }}</small>
+                                                    <small class="fw-hold mb-0">@if(!is_null($report->user->city)) г. {{ $report->user->city }} @endif</small>
                                                 </div>
                                             </div>
                                             <span class="badge rounded-pill badge-success">Active</span>

@@ -29,7 +29,7 @@
                                 </a>
                                 <div class="ms-3">
                                     <p class="fw-bold mb-1">{{ $report->user->name }}</p>
-                                    <small class="fw-hold mb-1"> г. {{ $report->user->city }}</small>
+                                    <small class="fw-hold mb-1">@if(!is_null($report->user->city)) г. {{ $report->user->city }} @endif</small>
                                 </div>
                             </div>
                         </li>
